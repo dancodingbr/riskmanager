@@ -153,7 +153,7 @@ Project Artifacts
 
 | FILE |  TOOL | LINK |
 | ------ | ------ | ------ |
-| UX/UI | Pencil Project | [02_ux-ui-design.epgz](https://github.com/dancodingbr/sources/blob/main/labprojects/riskmanager/docs/02_ux-ui-design/02_ux-ui-design.epgz) |
+| UX/UI | Pencil Project | [02_ux-ui-design.epgz](https://github.com/dancodingbr/riskmanager/tree/main/docs/02_ux-ui-design/02_ux-ui-design.epgz) |
 | File 2 | Tool B | [file-name-2](http://example.com) |
 | File N | Tool C | [file-name-N](http://example.com) |
 
