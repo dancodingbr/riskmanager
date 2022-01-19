@@ -1,3 +1,4 @@
 /.metadata/
 *.glade~
 node_modules
+*.bak

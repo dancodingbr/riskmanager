@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="architecture" id="id-cbbe7ab9a17b4dd997c5205681b330cc" version="4.6.0">
+  <folder name="Strategy" id="id-6ee1a669e8284889aec1e4cacaf40a2a" type="strategy"/>
+  <folder name="Business" id="id-0f244670e4414dccb79a5b493f2c4227" type="business">
+    <element xsi:type="archimate:BusinessActor" name="Risk Manager User" id="id-2839a859449b4d02ac00b4d911d2e366">
+      <documentation>A user</documentation>
+      <property key="Stereotype" value="Person"/>
+    </element>
+    <element xsi:type="archimate:BusinessActor" name="Business Actor" id="id-79012865fb774a08b270fe5f2697d081"/>
+    <element xsi:type="archimate:BusinessActor" name="Calculator User" id="id-19381bb7c58942a296c2791f2a5a2738">
+      <documentation>A general user</documentation>
+      <property key="Stereotype" value="Actor"/>
+    </element>
+    <element xsi:type="archimate:BusinessActor" name="Goodiet Vendor" id="id-e3b1cc33b23044dba0a36c77216a8e6f">
+      <documentation>A vendor</documentation>
+      <property key="Stereotype" value="Person"/>
+    </element>
+    <element xsi:type="archimate:BusinessRole" name="Business Role" id="id-a788ddad910445d6b3a1cc64d06ed676"/>
+    <element xsi:type="archimate:BusinessObject" name="Business Object" id="id-9708910d8d23458c94e539e97e83fd7a"/>
+    <element xsi:type="archimate:BusinessRole" name="Business Role" id="id-7afb78f13acd45b0a54e1cf0a4dc7f0b"/>
+  </folder>
+  <folder name="Application" id="id-8b0b2545b8b847adb3487c6f4e5b122c" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Risk Manager Application" id="id-f17eb4a256f84d05a966184a4d144698">
+      <documentation>Allows users to register problems, create action plans and respective tasks.</documentation>
+      <property key="Stereotype" value="Software System"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Description Title" id="id-b0f5f1a016d54345b1ea26dedb82a2a4">
+      <documentation>Description Content</documentation>
+      <property key="Stereotype" value="Container"/>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Description Title" id="id-b6b66a5e035242cf9757f11de93fc413">
+      <documentation>Description Content</documentation>
+      <property key="Stereotype" value="Component"/>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Description Title" id="id-c30d57adda4d46a0846593eb26487c10">
+      <documentation>Description Content</documentation>
+      <property key="Stereotype" value="Code Element"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Calculator Application" id="id-2dd12c7104cf45cb8a8a5caa324a5101">
+      <property key="Stereotype" value="Software System"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Single Page Application " id="id-43a4103b152a49998aded7fb48d37142">
+      <documentation>Provides all functionalities to customers via their web browser</documentation>
+      <property key="Stereotype" value="Container: Vue JS"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Single Page Application" id="id-bac4f1c0eb5142f683f951ce6d4937ae">
+      <documentation>Provides the main funcionalities to users via their web browser.</documentation>
+      <property key="Stereotype" value="Container: Angular"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="API Application" id="id-51fb51455c484ec69f98d92dfa91aa86">
+      <documentation>Process request calls coming from UI via service API</documentation>
+      <property key="Stereotype" value="Container: Spring Boot"/>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Application Service" id="id-87e9423df3ba43ecb65258ae53cffe28"/>
+    <element xsi:type="archimate:ApplicationService" name="Application Service" id="id-86233b1f73a54fc094d75a525307e0d0"/>
+    <element xsi:type="archimate:ApplicationService" name="Application Service" id="id-f68df7370b344d869f94c00fa1c49823"/>
+    <element xsi:type="archimate:DataObject" name="Data Object" id="id-ccaa16960b564a46ab9b5fd1532ef94f"/>
+    <element xsi:type="archimate:ApplicationInterface" id="id-a81cf7c591b14d7c8c7fa8a47b7df5d9"/>
+    <element xsi:type="archimate:ApplicationService" name="Application Service" id="id-910230fc928a4280a16b560848d2f6f4"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Database" id="id-743eaa73b2c546e28872e2a642648433">
+      <documentation>Stores problem registers, action plans, tasks.</documentation>
+      <property key="Stereotype" value="Container: Postgresql"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="API Application" id="id-00df72ea3dd4417c85f519461781caff">
+      <documentation>Provides Goodiet funcionalities via Google Cloud Service API (BaaS)</documentation>
+      <property key="Stereotype" value="Container: Firebase"/>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Application Service" id="id-518c56994d4f4e6ca1c91c6ff4f26469"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-701a6017f54541259f66572a28f6db45" type="technology">
+    <element xsi:type="archimate:SystemSoftware" name="System Software" id="id-1d37b80c0ac74b5f91a85f69a6581044"/>
+    <element xsi:type="archimate:TechnologyService" name="Technology Service" id="id-c856a59201ab41c0b4b6a8dd603d8468"/>
+  </folder>
+  <folder name="Motivation" id="id-3f4e9d6226a34ab19a6635e9672abecc" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="id-c3b283d4adaf4eb1aff5351d31370d2f" type="implementation_migration"/>
+  <folder name="Other" id="id-717966e9322a4e7fb090d1c2482a06da" type="other">
+    <element xsi:type="archimate:Grouping" name="Risk Manager Application" id="id-962d6f6af7a9448c9c77255c6ef3c61f">
+      <property key="Stereotype" value="Software System"/>
+    </element>
+  </folder>
+  <folder name="Relations" id="id-ef535e3ed5cb4d5784c80dfc48dfb774" type="relations">
+    <element xsi:type="archimate:FlowRelationship" name="Analyze and choose which action plans are effective for solving problems using" id="id-18da18782d40425cb1c6378da6e856e5" source="id-2839a859449b4d02ac00b4d911d2e366" target="id-f17eb4a256f84d05a966184a4d144698">
+      <property key="Stereotype"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Make math operations using" id="id-c52240b2bf864f219c711af46a013fba" source="id-19381bb7c58942a296c2791f2a5a2738" target="id-962d6f6af7a9448c9c77255c6ef3c61f">
+      <property key="Stereotype"/>
+    </element>
+    <element xsi:type="archimate:CompositionRelationship" id="id-05ac0183466c49bb929eb54f98c8f152" source="id-2dd12c7104cf45cb8a8a5caa324a5101" target="id-43a4103b152a49998aded7fb48d37142"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-9b38611e25e24818bc961d573769b93e" source="id-962d6f6af7a9448c9c77255c6ef3c61f" target="id-43a4103b152a49998aded7fb48d37142"/>
+    <element xsi:type="archimate:FlowRelationship" name="Makes a menu, view most requested meals and statistics using" id="id-705aeba464d54e3a8f775f7a383766c9" source="id-e3b1cc33b23044dba0a36c77216a8e6f" target="id-f17eb4a256f84d05a966184a4d144698"/>
+    <element xsi:type="archimate:FlowRelationship" name="Makes API calls to" id="id-3ec1214757a44c95ac6877a52bb0841d" source="id-43a4103b152a49998aded7fb48d37142" target="id-51fb51455c484ec69f98d92dfa91aa86">
+      <property key="Stereotype" value="JSON/HTTPS"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Makes API calls to" id="id-a54f3ced5e4b40ae8edff01691b7a0ba" source="id-bac4f1c0eb5142f683f951ce6d4937ae" target="id-51fb51455c484ec69f98d92dfa91aa86">
+      <property key="Stereotype" value="JSON/HTTPS"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Analyze and choose which action plans are effective for solving problems using" id="id-d90e279c784446fc87f00416b537d664" source="id-2839a859449b4d02ac00b4d911d2e366" target="id-bac4f1c0eb5142f683f951ce6d4937ae">
+      <property key="Stereotype" value="HTTPS"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Makes a menu, view most requested meals and statistics using" id="id-dbb4702cfc7640809d902faf8c902e16" source="id-e3b1cc33b23044dba0a36c77216a8e6f" target="id-bac4f1c0eb5142f683f951ce6d4937ae">
+      <property key="Stereotype" value="HTTPS"/>
+    </element>
+    <element xsi:type="archimate:CompositionRelationship" id="id-84d7dd245239444c9068b221483480a5" source="id-962d6f6af7a9448c9c77255c6ef3c61f" target="id-86233b1f73a54fc094d75a525307e0d0"/>
+    <element xsi:type="archimate:FlowRelationship" name="Read / Write" id="id-88bfbf4c503e4acfa48cce7b696a391d" source="id-51fb51455c484ec69f98d92dfa91aa86" target="id-743eaa73b2c546e28872e2a642648433">
+      <property key="Stereotype" value="JDBC"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Makes API calls to" id="id-06b1e141c8464ce3ab21a7bcefe8d97c" source="id-43a4103b152a49998aded7fb48d37142" target="id-00df72ea3dd4417c85f519461781caff">
+      <property key="Stereotype" value="JSON/HTTPS"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Makes API calls to" id="id-cb1f432a72fb4739b6b6efe20f1393e5" source="id-bac4f1c0eb5142f683f951ce6d4937ae" target="id-00df72ea3dd4417c85f519461781caff">
+      <property key="Stereotype" value="JSON/HTTPS"/>
+    </element>
+  </folder>
+  <folder name="Views" id="id-ee7c695aa96046bd9e5c702aee4c51f1" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Level 1" id="id-b68b8d3e3d224e7c9dc0486a6777d22b">
+      <child xsi:type="archimate:DiagramObject" id="id-acb71b3ccee3466e9f7fd77ddf2a3a33" fontColor="#ffffff" fillColor="#204a87" textPosition="1" archimateElement="id-2839a859449b4d02ac00b4d911d2e366">
+        <bounds x="433" y="144" width="229" height="97"/>
+        <feature name="labelExpression" value="${name}&#xA;&#xA;[${property:Stereotype}]&#xA;${documentation}"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-47208a6e00664d81994b0873bf531999" source="id-acb71b3ccee3466e9f7fd77ddf2a3a33" target="id-8a4d9cf9159344d9aaee895c93e0f584" archimateRelationship="id-18da18782d40425cb1c6378da6e856e5">
+          <feature name="labelExpression" value="${name}"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-8a4d9cf9159344d9aaee895c93e0f584" targetConnections="id-47208a6e00664d81994b0873bf531999" fontColor="#ffffff" fillColor="#3465a4" textPosition="1" archimateElement="id-f17eb4a256f84d05a966184a4d144698" type="1">
+        <bounds x="420" y="348" width="265" height="169"/>
+        <feature name="labelExpression" value="${name}&#xA;&#xA;[${property:Stereotype}]&#xA;${documentation}"/>
+      </child>
+      <child xsi:type="archimate:Note" id="id-ecedfdadb5644aec9c6ea9504b9400b2" font="1|Sans|9.0|1|GTK|1|" textPosition="1">
+        <bounds x="384" y="48" width="327" height="49"/>
+        <content>LEVEL 1: SYSTEM CONTEXT DIAGRAM</content>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Level 2" id="id-2e4551c0599e4818913e75029141f3dc">
+      <child xsi:type="archimate:Note" id="id-514ddf5c65e04391b60ea89dff2e18d1" font="1|Sans|9.0|1|GTK|1|" textPosition="1">
+        <bounds x="384" y="48" width="327" height="49"/>
+        <content>LEVEL 2: CONTAINER DIAGRAM</content>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-dbd4ae0c814f4b6cad3bde29ffe14874" font="1|Sans|7.0|0|GTK|1|" textAlignment="1" textPosition="2" archimateElement="id-962d6f6af7a9448c9c77255c6ef3c61f" type="1">
+        <bounds x="396" y="168" width="769" height="397"/>
+        <feature name="labelExpression" value="${name}&#xA;[${property:Stereotype}]"/>
+        <child xsi:type="archimate:DiagramObject" id="id-57c917211c294abd8e873ec2aa8fe33e" targetConnections="id-0030a8333a2b4641af0302a127d37a4e" fontColor="#ffffff" fillColor="#729fcf" textPosition="1" archimateElement="id-bac4f1c0eb5142f683f951ce6d4937ae" type="1">
+          <bounds x="48" y="60" width="265" height="121"/>
+          <feature name="labelExpression" value="${name}&#xA;&#xA;[${property:Stereotype}]&#xA;${documentation}"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-7ce8fa969586462bb1ebf2ec76431167" source="id-57c917211c294abd8e873ec2aa8fe33e" target="id-f3b4d9ed758e4337ac61f1aad96398a6" archimateRelationship="id-a54f3ced5e4b40ae8edff01691b7a0ba">
+            <feature name="labelExpression" value="${name}&#xA;[${property:Stereotype}]"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-f3b4d9ed758e4337ac61f1aad96398a6" targetConnections="id-7ce8fa969586462bb1ebf2ec76431167" fontColor="#ffffff" fillColor="#729fcf" textPosition="1" archimateElement="id-51fb51455c484ec69f98d92dfa91aa86" type="1">
+          <bounds x="456" y="60" width="265" height="121"/>
+          <feature name="labelExpression" value="${name}&#xA;&#xA;[${property:Stereotype}]&#xA;${documentation}"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-579e6e7782824ccdb9ed8292cc9d0f55" source="id-f3b4d9ed758e4337ac61f1aad96398a6" target="id-3ff04c49d23241c5a23268fde44b35d0" archimateRelationship="id-88bfbf4c503e4acfa48cce7b696a391d">
+            <feature name="labelExpression" value="${name}&#xA;[${property:Stereotype}]"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-3ff04c49d23241c5a23268fde44b35d0" targetConnections="id-579e6e7782824ccdb9ed8292cc9d0f55" fontColor="#ffffff" fillColor="#729fcf" textPosition="1" archimateElement="id-743eaa73b2c546e28872e2a642648433" type="1">
+          <bounds x="456" y="240" width="265" height="121"/>
+          <feature name="labelExpression" value="${name}&#xA;&#xA;[${property:Stereotype}]&#xA;${documentation}"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-9cd0e3747ef9449e8160012b97c4f71b" fontColor="#ffffff" fillColor="#204a87" textPosition="1" archimateElement="id-2839a859449b4d02ac00b4d911d2e366">
+        <bounds x="36" y="444" width="229" height="97"/>
+        <feature name="labelExpression" value="${name}&#xA;&#xA;[${property:Stereotype}]&#xA;${documentation}"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-0030a8333a2b4641af0302a127d37a4e" source="id-9cd0e3747ef9449e8160012b97c4f71b" target="id-57c917211c294abd8e873ec2aa8fe33e" archimateRelationship="id-d90e279c784446fc87f00416b537d664">
+          <feature name="labelExpression" value="${name}&#xA;[${property:Stereotype}]&#xA;"/>
+        </sourceConnection>
+      </child>
+    </element>
+  </folder>
+</archimate:model>
