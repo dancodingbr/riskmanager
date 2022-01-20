@@ -177,6 +177,14 @@ _(Note: This development environment was preparing in Linux operating system (Ub
 
 **Setting Steps**
 
+1. Install VS Code.
+
+2. Install Node js.
+
+3. Install npm.
+
+4. Install Angular CLI.
+
 _[...]_
 
 
