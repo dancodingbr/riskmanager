@@ -185,6 +185,15 @@ _(Note: This development environment was preparing in Linux operating system (Ub
 
 4. Install Angular CLI.
 
+5. Import the project as a workspace and open in integrated terminal.
+
+6. Run the application.
+
+```sh
+cd frontend/web/riskmanager
+ng serve --open
+```
+
 _[...]_
 
 
