@@ -207,6 +207,27 @@ _[...]_
 
 **Setting Steps**
 
+1. Install openjdk (version: 17).
+
+2. Install Eclipse IDE.
+
+3. Open Eclipse
+
+- Select as workspace /riskmanager/backend.
+
+- Import the riskmanager project (/backend/riskmanager) as a Existing Gradle project.
+
+4. Install Spring Tools 4 plugin
+
+- Click on Help > Eclipse Marketplace. In Find field, type "spring".
+
+- Choose and install "Spring Tools 4".
+
+- Follow the steps (Next, Next, ... Finish) and wait until the installation ends.
+
+5. Run the application.
+
+
 _[...]_
 
 ### Release Notes
