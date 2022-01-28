@@ -2,7 +2,16 @@
 
 Welcome to Risk Manager's wiki.
 
-## Project Management
+# Table of Contents
+
+* [Project Management](#project-management)
+* [Development Notes](#development-notes)
+* [Testing](#testing)
+* [Quality](#quality)
+* [Meeting Notes](#meeting-notes)
+* [Documentation](#documentation)
+
+## <a name="project-management"></a>Project Management
 
 ### Roadmap
 
@@ -39,7 +48,7 @@ _(the final week of the milestone. During this week the team will wrap up any fe
 _(description)_
 
 
-## Development Notes
+## <a name="development-notes"></a>Development Notes
 
 ### Workflow
 
@@ -277,7 +286,7 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 >
 
 
-## Testing
+## <a name="testing"></a>Testing
 
 ### Levels
 
@@ -286,7 +295,7 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 - System tests
 - Acceptance tests
 
-## Quality
+## <a name="quality"></a>Quality
 
 ### Definition Of Done
 
@@ -296,13 +305,13 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 - Documentation updated
 - Acceptance criteria met
 
-## Meeting Notes
+## <a name="meeting-notes"></a>Meeting Notes
 
 ### Team Communication
 
 _(chat: Gitter, Discord, Slack, Teams, etc)_
 
-## Documentation
+## <a name="documentation"></a>Documentation
 
 _(documents repository, technical tutorials)_
 
