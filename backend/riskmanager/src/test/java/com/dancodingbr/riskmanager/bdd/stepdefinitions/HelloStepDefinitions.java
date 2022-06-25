@@ -21,12 +21,14 @@ public class HelloStepDefinitions {
 
 	HttpUriRequest request;	
 	HttpResponse response;
+	@Value("${server.servlet.context-path}")
+	private String contextPath;
 	@Value("${server.port}")
 	private int port;
 
 	@Given("a {string}")
 	public void a(String request) {
-		this.request = new HttpGet("http://localhost:" + this.port + request);
+		this.request = new HttpGet("http://localhost:" + this.port + this.contextPath + request);
 	}
 	@When("client calls it")
 	public void client_calls_it() throws ClientProtocolException, IOException {
@@ -37,5 +39,5 @@ public class HelloStepDefinitions {
 		String atualMessage = EntityUtils.toString(this.response.getEntity());
 		assertEquals(message, atualMessage);
 	}
-	
+
 }
