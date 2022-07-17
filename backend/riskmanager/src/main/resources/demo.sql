@@ -8,5 +8,5 @@ CREATE TABLE analyzed_result (
 	impact_level VARCHAR(100) NOT NULL
 );
 
-INSERT INTO analyzed_result (id, problem, action_plan, probability_level, impact_level) VALUES (1, 'Bad grades on math', 'Study 8 hours per week on next semester', 'RARE', 'HIGH');
-INSERT INTO analyzed_result (id, problem, action_plan, probability_level, impact_level) VALUES (2, 'Body weight raising', 'Decrease 20% of calories consumed per day', 'INFREQUENT', 'MODERATE');
+INSERT INTO analyzed_result (id, problem, action_plan, probability_level, impact_level) VALUES (1, 'BAD GRADES ON MATH', 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER', 'RARE', 'HIGH');
+INSERT INTO analyzed_result (id, problem, action_plan, probability_level, impact_level) VALUES (2, 'BODY WEIGHT RAISING', 'DECREASE 20% OF CALORIES CONSUMED PER DAY', 'INFREQUENT', 'MODERATE');

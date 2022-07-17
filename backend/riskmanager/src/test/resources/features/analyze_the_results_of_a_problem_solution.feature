@@ -13,5 +13,5 @@ Feature: Analyze the results of a problem solution
 
         Examples:
             | problem                | action_plan                                  | probability_level     | impact_level  | risk_level  |
-            | 'Bad grades on math'   | 'Study 8 hours per week on next semester'    | 'RARE'                | 'HIGH'        | 'LOW'       |
-            | 'Body weight raising'  | 'Decrease 20% of calories consumed per day'  | 'INFREQUENT'          | 'MODERATE'    | 'LOW'       |
+            | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                | 'HIGH'        | 'LOW'       |
+            | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'          | 'MODERATE'    | 'LOW'       |

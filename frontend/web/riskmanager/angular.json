@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -98,9 +99,40 @@
             ],
             "scripts": []
           }
+        },
+        "nightwatch-run": {
+          "builder": "@nightwatch/schematics:nightwatch",
+          "options": {
+            "devServerTarget": "riskmanager:serve",
+            "tsConfig": "../nightwatch/tsconfig.e2e.json",
+            "config": "./nightwatch.conf.js",
+            "env": "firefox"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "riskmanager:serve:production"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@nightwatch/schematics:nightwatch",
+          "options": {
+            "devServerTarget": "riskmanager:serve",
+            "tsConfig": "../nightwatch/tsconfig.e2e.json",
+            "config": "./nightwatch.conf.js",
+            "env": "cucumber-js"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "riskmanager:serve:production"
+            }
+          }
         }
       }
     }
   },
-  "defaultProject": "riskmanager"
+  "defaultProject": "riskmanager",
+  "cli": {
+    "analytics": false
+  }
 }

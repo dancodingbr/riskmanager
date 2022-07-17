@@ -203,7 +203,51 @@ cd frontend/web/riskmanager
 ng serve --open
 ```
 
+7. If you receive a message like this "command not found: ng", run the following commands:
+
+```sh
+npm install --save-dev @angular/cli@latest
+npm install -g @angular/cli
+```
+
 _[...]_
+
+
+**Misc Commands**
+
+- Angular CLI Generate: 
+
+https://angular.io/cli/generate
+
+_Note: Use Angular CLI generate commands to create the artifacts (for example: components, services, classes, interfaces, etc.)_
+
+- Run E2E tests: 
+
+. Nigtwatch CucumberJS Environment
+
+```sh
+npx nightwatch --env cucumber-js --format @cucumber/pretty-formatter
+```
+
+. Default Nightwatch Environment
+
+```sh
+npx nightwatch
+```
+
+. Default Angular E2E Environment
+
+```sh
+ng e2e
+```
+
+- Run Integration and Unit tests:
+
+. Default Karma/Jasmine Environment
+
+```sh
+ng test
+```
 
 
 #### Backend

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="analyzed_result_edit_spec"
+    errors="0" failures="0" hostname="" id="" package="analyzed_result_edit_spec" skipped="0"
+    tests="2" time="0.3360" timestamp="">
+  
+    <testcase name="should gets risk level when user selects probability and impact level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.2270" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="should gets risk level when user selects impact and probability level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.1090" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
