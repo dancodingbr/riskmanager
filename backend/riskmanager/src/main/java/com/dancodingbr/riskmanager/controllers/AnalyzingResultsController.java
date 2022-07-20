@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dancodingbr.riskmanager.exception.InvalidImpactLevelException;
+import com.dancodingbr.riskmanager.exception.InvalidProbabilityLevelException;
+import com.dancodingbr.riskmanager.exception.InvalidRiskLevelException;
 import com.dancodingbr.riskmanager.services.AnalyzingResultsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +25,7 @@ public class AnalyzingResultsController {
 
 	@GetMapping("/analyzing-results/")
 	public ResponseEntity<String> getRiskLevel(@RequestParam("probabilityLevel") String probabilityLevel,
-			@RequestParam("impactLevel") String impactLevel) throws JsonProcessingException {
+			@RequestParam("impactLevel") String impactLevel) throws JsonProcessingException, InvalidProbabilityLevelException, InvalidImpactLevelException, InvalidRiskLevelException {
 		String riskLevel = analyzingResultsService.calculateRiskLevel(probabilityLevel, impactLevel);
 
 		final HttpHeaders httpHeaders= new HttpHeaders();
