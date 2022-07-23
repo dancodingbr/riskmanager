@@ -3,25 +3,35 @@ package com.dancodingbr.riskmanager.services;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.dancodingbr.riskmanager.enums.ImpactLevel;
+import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
+import com.dancodingbr.riskmanager.enums.RiskAssessmentMatrix;
+import com.dancodingbr.riskmanager.enums.RiskLevel;
 import com.dancodingbr.riskmanager.exception.InvalidImpactLevelException;
 import com.dancodingbr.riskmanager.exception.InvalidProbabilityLevelException;
 import com.dancodingbr.riskmanager.exception.InvalidRiskLevelException;
+import com.dancodingbr.riskmanager.models.AnalyzedResult;
+import com.dancodingbr.riskmanager.repositories.AnalyzedResultRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class AnalyzingResultsServiceTest {
 
 	private AnalyzingResultsService analyzingResultsService;
 
+	@Mock
+	private AnalyzedResultRepository analyzedResultRepository;
+	
 	@BeforeEach
 	public void setUp() {
-		analyzingResultsService = new AnalyzingResultsService();
+		analyzingResultsService = new AnalyzingResultsService(analyzedResultRepository);
 	}
 
 	@Test
@@ -103,4 +113,34 @@ public class AnalyzingResultsServiceTest {
 		assertTrue(exception.getMessage().equals("Invalid impact level."));
 	}
 
+	@Test
+	public void it_should_returns_nothing_when_saves_an_analyzed_result_successfully() throws Exception {
+		
+		// arrange
+		String problem = "BAD GRADES ON MATH";
+		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
+		ImpactLevel impactLevel = ImpactLevel.HIGH;
+		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
+
+		AnalyzedResult analyzedResult = new AnalyzedResult(
+				problem,
+				actionPlan,
+				probabilityLevel,
+				impactLevel,
+				riskLevel
+			);
+
+		given(analyzedResultRepository.save(analyzedResult)).willReturn(analyzedResult);
+		
+		// act
+		this.analyzingResultsService.save(analyzedResult);
+		
+		// assert
+		assertTrue(analyzedResult instanceof AnalyzedResult);
+		
+		// verify
+		verify(analyzedResultRepository).save(any(AnalyzedResult.class));
+	}
+	
 }
