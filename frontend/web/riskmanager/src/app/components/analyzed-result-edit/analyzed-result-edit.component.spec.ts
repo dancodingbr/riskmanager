@@ -5,8 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
+import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
 
 import { AnalyzedResultEditComponent } from './analyzed-result-edit.component';
@@ -17,6 +19,12 @@ class MockAnalyzedResultService {
     impactLevel: string
   ): Observable<string> {
     return of('LOW');
+  }
+
+  save(
+    analyzedResult: AnalyzedResult
+  ): Observable<string> {
+    return of('SUCCESS');
   }
 }
 
@@ -36,6 +44,7 @@ describe('AnalyzedResultEditComponent', () => {
         MatInputModule,
         MatRadioModule,
         MatSelectModule,
+        MatSnackBarModule,
       ],
       providers: [
         { provide: AnalyzedResultService, useClass: MockAnalyzedResultService },
@@ -80,7 +89,7 @@ describe('AnalyzedResultEditComponent', () => {
       });
   });
 
-  it('should sets risk level when on changing impact level', () => {
+  it('should set risk level when on changing impact level', () => {
     // arrange
     component.analyzedResultEditForm.controls['problem'].setValue(
       'BAD GRADES ON MATH'
@@ -108,5 +117,32 @@ describe('AnalyzedResultEditComponent', () => {
           component.analyzedResultEditForm.controls['riskLevel'].value
         ).toBe(riskLevel);
       });
+  });
+
+  it('should save the analyzed result when on clicking save button', () => {
+    // arrange
+    const problem = 'BAD GRADES ON MATH';
+    const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
+    const probabilityLevel = 'RARE';
+    const impactLevel = 'HIGH';
+    const riskLevel = 'LOW';
+
+    const analyzedResult = new AnalyzedResult(
+      problem,
+      actionPlan,
+      probabilityLevel,
+      impactLevel,
+      riskLevel
+    );
+
+    // act
+    component.onClickSaveButton();
+
+    // assert
+    analyzedResultService.save(analyzedResult).subscribe((operationStatus) => {
+      expect(component.responseMessage).toContain(
+        operationStatus
+      );
+    });
   });
 });

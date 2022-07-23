@@ -5,9 +5,9 @@
 
   <testsuite name="hello_spec"
     errors="0" failures="0" hostname="" id="" package="hello_spec" skipped="0"
-    tests="1" time="0.1050" timestamp="">
+    tests="1" time="0.07600" timestamp="">
   
-    <testcase name="should shows hello world message at home page when user clicks on hello link" classname="hello_spec" time="0.1050" assertions="1">
+    <testcase name="should shows hello world message at home page when user clicks on hello link" classname="hello_spec" time="0.07600" assertions="1">
 
     
     </testcase>

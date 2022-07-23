@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-analyzed-result-edit',
@@ -16,8 +18,11 @@ export class AnalyzedResultEditComponent implements OnInit {
     riskLevel: '',
   });
 
+  responseMessage: string = '';
+
   constructor(
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     private analyzedResultService: AnalyzedResultService
   ) {}
 
@@ -46,4 +51,22 @@ export class AnalyzedResultEditComponent implements OnInit {
         this.analyzedResultEditForm.controls['riskLevel'].setValue(riskLevel);
       });
   }
+  
+  onClickSaveButton() {
+    const analyzedResult = new AnalyzedResult(
+      this.analyzedResultEditForm.controls['problem'].value,
+      this.analyzedResultEditForm.controls['actionPlan'].value,
+      this.analyzedResultEditForm.controls['probabilityLevel'].value,
+      this.analyzedResultEditForm.controls['impactLevel'].value,
+      this.analyzedResultEditForm.controls['riskLevel'].value
+    );
+
+    this.analyzedResultService.save(analyzedResult).subscribe((operationStatus) => {
+      this.responseMessage = 'The operation was a ' + operationStatus;
+      this.snackBar.open(this.responseMessage, 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
 }

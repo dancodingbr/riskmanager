@@ -1,7 +1,7 @@
 const { Given, Then, When } = require("@cucumber/cucumber");
 const { spec } = require("pactum");
 
-const SERVER_URL = 'http://localhost:8080/riskmanager/api';
+const SERVER_URL = "http://localhost:8080/riskmanager/api";
 
 Given("a related {string}", function (problem) {
   this.problem = problem;
@@ -18,7 +18,7 @@ Given(
   }
 );
 
-Given("an {string} impact of this mitigated problem", function (impactLevel) {
+Given("an {string} of this mitigated problem", function (impactLevel) {
   this.impactLevel = impactLevel;
 });
 
@@ -29,7 +29,10 @@ When(
       .get(SERVER_URL + "/analyzing-results/")
       .withQueryParams("problem", encodeURIComponent(this.problem))
       .withQueryParams("actionPlan", encodeURIComponent(this.actionPlan))
-      .withQueryParams("probabilityLevel", encodeURIComponent(this.probabilityLevel))
+      .withQueryParams(
+        "probabilityLevel",
+        encodeURIComponent(this.probabilityLevel)
+      )
       .withQueryParams("impactLevel", encodeURIComponent(this.impactLevel));
   }
 );
@@ -40,3 +43,25 @@ Then(
     return this.response.expectBodyContains(riskLevel);
   }
 );
+
+Given("a {string} risk calculated", function (riskLevel) {
+  this.riskLevel = riskLevel;
+});
+
+When("the user saves this analyzed result", function () {
+  const analyzedResult = {
+    problem: this.problem,
+    actionPlan: this.actionPlan,
+    probabilityLevel: this.probabilityLevel,
+    impactLevel: this.impactLevel,
+    riskLevel: this.riskLevel,
+  };
+
+  this.response = spec()
+    .post(SERVER_URL + "/analyzed-results/")
+    .withBody(analyzedResult);
+});
+
+Then("shows that operation was {string}", function (operationStatus) {
+  return this.response.expectStatus(200).expectBodyContains(operationStatus);
+});

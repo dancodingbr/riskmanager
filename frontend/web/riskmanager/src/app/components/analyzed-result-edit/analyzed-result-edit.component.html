@@ -38,7 +38,9 @@
               #probabilityLevel
               id="probability-level-element-id"
               formControlName="probabilityLevel"
-              (selectionChange)="onChangeProbabilityLevel(probabilityLevel.value)"
+              (selectionChange)="
+                onChangeProbabilityLevel(probabilityLevel.value)
+              "
             >
               <mat-option value="IMMINENT">Imminent</mat-option>
               <mat-option value="FREQUENT">Frequent</mat-option>
@@ -81,7 +83,15 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button
+        mat-raised-button
+        id="save-button-id"
+        color="primary"
+        type="submit"
+        (click)="onClickSaveButton()"
+      >
+        Save
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

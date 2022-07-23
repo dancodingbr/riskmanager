@@ -7,7 +7,7 @@ Feature: Analyze the results of a problem solution
         Given a related <problem>
         And an <action_plan> done
         And a <probability_level> occurrence of this mitigated problem
-        And an <impact_level> impact of this mitigated problem
+        And an <impact_level> of this mitigated problem
         When the system calculates a risk level using a risk assessment matrix
         Then this result in the <risk_level> chance to occurs the problem again
 
@@ -16,3 +16,16 @@ Feature: Analyze the results of a problem solution
             | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         |
             | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         |
 
+    Scenario: Save an analyzed result
+        Given a related <problem>
+        And an <action_plan> done
+        And a <probability_level> occurrence of this mitigated problem
+        And an <impact_level> of this mitigated problem
+        And a <risk_level> risk calculated
+        When the user saves this analyzed result
+        Then shows that operation was <operation_status>
+
+        Examples:
+            | problem                | action_plan                                  | probability_level       | impact_level    | risk_level    | operation_status    |
+            | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         | 'SUCCESS'           |
+            | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         | 'SUCCESS'           |

@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,10 +28,13 @@ import { AnalyzedResultEditComponent } from './components/analyzed-result-edit/a
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    MatSnackBarModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
