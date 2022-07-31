@@ -1,6 +1,10 @@
 package com.dancodingbr.riskmanager.controllers;
 
 import static org.mockito.BDDMockito.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.anyString;
 
 import org.junit.Test;
@@ -100,6 +104,44 @@ public class AnalyzingResultsControllerTest {
 		
 		// verify
 		verify(analyzingResultsService, times(1)).save(analyzedResult);
+	}
+
+	@Test
+	public void it_should_returns_http_200_response_when_gets_analyzed_results_given_a_problem() throws Exception {
+
+		// arrange
+		String problem = "BAD GRADES ON MATH";
+		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
+		ImpactLevel impactLevel = ImpactLevel.HIGH;
+		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
+
+		AnalyzedResult analyzedResult = new AnalyzedResult(
+				problem,
+				actionPlan,
+				probabilityLevel,
+				impactLevel,
+				riskLevel
+			);
+		List<AnalyzedResult> analyzedResultsList = Arrays.asList(analyzedResult);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		given(analyzingResultsService.getAnalyzedResults(anyString())
+			).willReturn(analyzedResultsList);
+		
+		// act and assert
+		this.mockMvc.perform(
+				MockMvcRequestBuilders.get("/analyzed-results/")
+					.param("problem", problem)
+				)
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.content().json(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(analyzedResultsList)))
+				.andReturn();
+
+		// verify
+		verify(analyzingResultsService).getAnalyzedResults(anyString());
 	}
 	
 }

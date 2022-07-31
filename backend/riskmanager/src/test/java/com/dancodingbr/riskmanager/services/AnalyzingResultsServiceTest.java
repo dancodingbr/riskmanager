@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -141,6 +144,38 @@ public class AnalyzingResultsServiceTest {
 		
 		// verify
 		verify(analyzedResultRepository).save(any(AnalyzedResult.class));
+	}
+
+	@Test
+	public void it_should_returns_analyzed_results_given_a_problem() throws InvalidRiskLevelException {
+
+		// arrange
+		String problem = "BAD GRADES ON MATH";
+		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
+		ImpactLevel impactLevel = ImpactLevel.HIGH;
+		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
+
+		AnalyzedResult analyzedResult = new AnalyzedResult(
+				problem,
+				actionPlan,
+				probabilityLevel,
+				impactLevel,
+				riskLevel
+			);
+		List<AnalyzedResult> expectedAnalyzedResultsList = Arrays.asList(analyzedResult);
+
+		given(analyzedResultRepository.findAllByProblem(problem)).willReturn(expectedAnalyzedResultsList);
+		
+		// act
+		List<AnalyzedResult> actualAnalyzedResultsList = this.analyzingResultsService.getAnalyzedResults(problem);
+		
+		// assert
+		assertTrue(analyzedResult instanceof AnalyzedResult);
+		assertEquals(expectedAnalyzedResultsList, actualAnalyzedResultsList);
+		
+		// verify
+		verify(analyzedResultRepository).findAllByProblem(anyString());
 	}
 	
 }

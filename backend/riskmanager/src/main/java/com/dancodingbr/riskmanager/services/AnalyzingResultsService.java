@@ -1,5 +1,7 @@
 package com.dancodingbr.riskmanager.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.dancodingbr.riskmanager.enums.ImpactLevel;
@@ -43,12 +45,12 @@ public class AnalyzingResultsService {
 		return RiskAssessmentMatrix.get(probabilityLevelEnum, impactLevelEnum).name();
 	}
 
-	public void save(AnalyzedResult analyzedResult) throws InvalidImpactLevelException {
-		try {
-			this.analyzedResultRepository.save(analyzedResult);
-		} catch(IllegalArgumentException iae) {
-			throw new InvalidImpactLevelException("Invalid analyzed result.");
-		}
+	public void save(AnalyzedResult analyzedResult) {
+		this.analyzedResultRepository.save(analyzedResult);
+	}
+
+	public List<AnalyzedResult> getAnalyzedResults(String anyString) {
+		return this.analyzedResultRepository.findAllByProblem(anyString);
 	}
 
 }

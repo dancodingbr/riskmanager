@@ -1,5 +1,7 @@
 package com.dancodingbr.riskmanager.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -53,6 +55,16 @@ public class AnalyzingResultsController {
 		node.put("operation_status", "SUCCESS");
 		
 		return new ResponseEntity<String>(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(node), httpHeaders, HttpStatus.OK);
+	}
+	
+	@GetMapping("/analyzed-results/")
+	public ResponseEntity<List<AnalyzedResult>> getAnalyzedResults(@RequestParam("problem") String problem) {
+		List<AnalyzedResult> analyzedResultsList = this.analyzingResultsService.getAnalyzedResults(problem); //List.of();
+		
+		final HttpHeaders httpHeaders= new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		
+		return new ResponseEntity<List<AnalyzedResult>>(analyzedResultsList, httpHeaders, HttpStatus.OK);
 	}
 	
 }

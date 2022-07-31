@@ -4,26 +4,38 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.dancodingbr.riskmanager.enums.ImpactLevel;
 import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
 
 @Entity
+@Table(name = "analyzed_result")
 public class AnalyzedResult implements Serializable {
 
 	private static final long serialVersionUID = 2798554009379643370L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String problem;
+
 	private String actionPlan;
+
+	@Enumerated(EnumType.STRING)
 	private ProbabilityLevel probabilityLevel;
+
+	@Enumerated(EnumType.STRING)
 	private ImpactLevel impactLevel;
+
+	@Enumerated(EnumType.STRING)
 	private RiskLevel riskLevel;
 	
 	public AnalyzedResult() {}

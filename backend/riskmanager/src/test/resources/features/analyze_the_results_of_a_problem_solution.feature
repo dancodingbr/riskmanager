@@ -29,4 +29,15 @@ Feature: Analyze the results of a problem solution
             | problem                | action_plan                                  | probability_level       | impact_level    | risk_level    | operation_status    |
             | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         | 'SUCCESS'           |
             | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         | 'SUCCESS'           |
+
+    Scenario: List the analyzed results
+        Given a related <problem>
+        When the system gets the analyzed results associated
+        Then shows <action_plan>
+        And <risk_level> of each analyzed result
+
+        Examples:
+            | problem                | action_plan                                  | risk_level    |
+            | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'LOW'         |
+            | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'LOW'         |
             
