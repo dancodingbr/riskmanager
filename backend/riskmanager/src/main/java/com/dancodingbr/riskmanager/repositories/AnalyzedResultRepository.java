@@ -12,7 +12,7 @@ import com.dancodingbr.riskmanager.models.AnalyzedResult;
 @Repository
 public interface AnalyzedResultRepository extends CrudRepository<AnalyzedResult, Long> {
 
-	@Query("select ar from AnalyzedResult ar where upper(ar.problem) = :problem")
-	List<AnalyzedResult> findAllByProblem(@Param("problem") String problem);
+	@Query("select ar from AnalyzedResult ar where ar.problem.id = :problemId")
+	List<AnalyzedResult> findAllByProblem(@Param("problemId") Long problemId);
 
 }

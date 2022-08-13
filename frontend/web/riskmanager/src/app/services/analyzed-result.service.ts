@@ -32,4 +32,9 @@ export class AnalyzedResultService {
     );
   }
 
+  getAllByProblem(problemId: number): Observable<AnalyzedResult[]> {
+    const params = new HttpParams()
+      .append('problemId', problemId)
+    return this.httpClient.get<AnalyzedResult[]>("http://localhost:8080/riskmanager/api/analyzed-results/", {params: params});
+  }
 }

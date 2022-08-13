@@ -5,9 +5,9 @@
 
   <testsuite name="analyzed_result_edit_spec"
     errors="0" failures="0" hostname="" id="" package="analyzed_result_edit_spec" skipped="0"
-    tests="3" time="0.4620" timestamp="">
+    tests="3" time="0.5190" timestamp="">
   
-    <testcase name="should gets risk level when user selects probability and impact level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.2290" assertions="3">
+    <testcase name="should gets risk level when user selects probability and impact level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.2420" assertions="3">
 
     
 
@@ -16,7 +16,7 @@
     
     </testcase>
   
-    <testcase name="should gets risk level when user selects impact and probability level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.1050" assertions="3">
+    <testcase name="should gets risk level when user selects impact and probability level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.1250" assertions="3">
 
     
 
@@ -25,7 +25,7 @@
     
     </testcase>
   
-    <testcase name="should save analyzed result when user clicks on save button given a analyzed result edited" classname="analyzed_result_edit_spec" time="0.1280" assertions="3">
+    <testcase name="should save analyzed result when user clicks on save button given a analyzed result edited" classname="analyzed_result_edit_spec" time="0.1520" assertions="3">
 
     
 
@@ -35,6 +35,15 @@
     </testcase>
   
 
+  
+    <system-err>
+       InvalidSelectorError: invalid selector: Unable to locate an element with the xpath expression table tbody because of the following error:
+ SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+   (Session info: chrome=103.0.5060.134)
+   SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+     (Session info: chrome=103.0.5060.134)
+       at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    </system-err>
   
 
     

@@ -13,11 +13,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnalyzedResultEditComponent } from './components/analyzed-result-edit/analyzed-result-edit.component';
+import { AnalyzedResultsComponent } from './components/analyzed-results/analyzed-results.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnalyzedResultEditComponent,
+    AnalyzedResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,9 @@ import { AnalyzedResultEditComponent } from './components/analyzed-result-edit/a
     MatSnackBarModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     MatSnackBarModule,

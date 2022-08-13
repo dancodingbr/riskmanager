@@ -2,7 +2,9 @@ package com.dancodingbr.riskmanager.bdd.stepdefinitions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -13,6 +15,7 @@ import com.dancodingbr.riskmanager.enums.ImpactLevel;
 import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
+import com.dancodingbr.riskmanager.models.Problem;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -37,17 +40,19 @@ public class AnalyzingResultsStepDefinitions {
 	private ResponseEntity<List<AnalyzedResult>> responseEntityAnalyzedResultList;
 
 	private String riskLevel;
-	private String problem;
 	private String actionPlan;
+	private Problem problem;
 
 	@Before
 	public void before() {
 		this.webClient = WebClient.builder().baseUrl("http://localhost:" + this.port + this.contextPath).build();
+		this.problem = new Problem();
 	}
 
-	@Given("a related {string}")
-	public void a_related(String problem) {
-		this.problem = problem;
+	@Given("a related {string},{string}")
+	public void a_related(String problemId, String problemDescription) {
+		this.problem.setId(Long.parseLong(problemId));
+		this.problem.setDescription(problemDescription);
 	}
 
 	@Given("an {string} done")
@@ -91,7 +96,7 @@ public class AnalyzingResultsStepDefinitions {
 
 	@When("the user saves this analyzed result")
 	public void the_user_saves_the_analyzed_result() {
-
+		
 		AnalyzedResult analyzedResult = new AnalyzedResult(this.problem, this.actionPlan,
 				ProbabilityLevel.valueOf(probabilityLevel), ImpactLevel.valueOf(this.impactLevel),
 				RiskLevel.valueOf(this.riskLevel));
@@ -108,20 +113,25 @@ public class AnalyzingResultsStepDefinitions {
 		JsonNode jsonNode = mapper.readTree(this.responseEntityString.getBody());
 		assertEquals(operationStatus, jsonNode.get("operation_status").asText());
 	}
-
+	
+	@Given("a related problem")
+	public void a_related_problem(io.cucumber.datatable.DataTable dataTable) {
+		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+		this.problem = new Problem(Long.parseLong(rows.get(0).get("id")), rows.get(0).get("description"));
+	}
+	
 	@When("the system gets the analyzed results associated")
 	public void the_system_gets_the_analyzed_results_associated() {
 
 		this.responseEntityAnalyzedResultList = this.webClient.get()
 				.uri(uriBuilder -> uriBuilder.path("/analyzed-results/")
-						.queryParam("problem", this.problem).build())
+						.queryParam("problemId", this.problem.getId()).build())
 				.accept(MediaType.APPLICATION_JSON)
 				.retrieve()
 				.toEntityList(AnalyzedResult.class)
 				.block();
-
 	}
-
+	
 	@Then("shows {string}")
 	public void shows(String actionPlan) throws JsonMappingException, JsonProcessingException {
 		List<AnalyzedResult> analyzedResultsList = this.responseEntityAnalyzedResultList.getBody();
@@ -134,4 +144,5 @@ public class AnalyzingResultsStepDefinitions {
 		assertEquals(riskLevel, analyzedResultsList.get(0).getRiskLevel().name());
 	}
 
+	
 }

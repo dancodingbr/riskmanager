@@ -22,6 +22,7 @@ import com.dancodingbr.riskmanager.exception.InvalidImpactLevelException;
 import com.dancodingbr.riskmanager.exception.InvalidProbabilityLevelException;
 import com.dancodingbr.riskmanager.exception.InvalidRiskLevelException;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
+import com.dancodingbr.riskmanager.models.Problem;
 import com.dancodingbr.riskmanager.repositories.AnalyzedResultRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -120,7 +121,7 @@ public class AnalyzingResultsServiceTest {
 	public void it_should_returns_nothing_when_saves_an_analyzed_result_successfully() throws Exception {
 		
 		// arrange
-		String problem = "BAD GRADES ON MATH";
+		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
@@ -150,7 +151,7 @@ public class AnalyzingResultsServiceTest {
 	public void it_should_returns_analyzed_results_given_a_problem() throws InvalidRiskLevelException {
 
 		// arrange
-		String problem = "BAD GRADES ON MATH";
+		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
@@ -165,17 +166,17 @@ public class AnalyzingResultsServiceTest {
 			);
 		List<AnalyzedResult> expectedAnalyzedResultsList = Arrays.asList(analyzedResult);
 
-		given(analyzedResultRepository.findAllByProblem(problem)).willReturn(expectedAnalyzedResultsList);
+		given(analyzedResultRepository.findAllByProblem(problem.getId())).willReturn(expectedAnalyzedResultsList);
 		
 		// act
-		List<AnalyzedResult> actualAnalyzedResultsList = this.analyzingResultsService.getAnalyzedResults(problem);
+		List<AnalyzedResult> actualAnalyzedResultsList = this.analyzingResultsService.getAnalyzedResults(problem.getId());
 		
 		// assert
 		assertTrue(analyzedResult instanceof AnalyzedResult);
 		assertEquals(expectedAnalyzedResultsList, actualAnalyzedResultsList);
 		
 		// verify
-		verify(analyzedResultRepository).findAllByProblem(anyString());
+		verify(analyzedResultRepository).findAllByProblem(anyLong());
 	}
 	
 }

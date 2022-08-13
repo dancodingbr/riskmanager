@@ -16,6 +16,7 @@ import com.dancodingbr.riskmanager.enums.RiskAssessmentMatrix;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
 import com.dancodingbr.riskmanager.exception.InvalidRiskLevelException;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
+import com.dancodingbr.riskmanager.models.Problem;
 
 @DataJpaTest
 public class AnalyzingResultsRepositoryTest {
@@ -29,7 +30,7 @@ public class AnalyzingResultsRepositoryTest {
 	@Test
 	public void it_should_returns_analyzed_result_when_saves_an_analyzed_result() throws InvalidRiskLevelException {
 		// arrange
-		String problem = "BAD GRADES ON MATH";
+		Problem problem = new Problem(null, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
@@ -53,7 +54,7 @@ public class AnalyzingResultsRepositoryTest {
 	@Test
 	public void it_should_returns_analyzed_results_given_a_problem() throws InvalidRiskLevelException {
 		// arrange
-		String problem = "BAD GRADES ON MATH";
+		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
@@ -71,7 +72,7 @@ public class AnalyzingResultsRepositoryTest {
 		entityManager.persistAndFlush(analyzedResult);
 		
 		// act
-		List<AnalyzedResult> actualAnalyzedResultsList = this.analyzedResultRepository.findAllByProblem(problem);
+		List<AnalyzedResult> actualAnalyzedResultsList = this.analyzedResultRepository.findAllByProblem(problem.getId());
 
 		// assert
 		assertEquals(expectedAnalyzedResultsList, actualAnalyzedResultsList);

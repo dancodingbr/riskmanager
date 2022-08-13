@@ -3,12 +3,16 @@ package com.dancodingbr.riskmanager.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.dancodingbr.riskmanager.enums.ImpactLevel;
@@ -25,7 +29,9 @@ public class AnalyzedResult implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String problem;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "problem_id")
+	private Problem problem;
 
 	private String actionPlan;
 
@@ -40,7 +46,7 @@ public class AnalyzedResult implements Serializable {
 	
 	public AnalyzedResult() {}
 
-	public AnalyzedResult(String problem, String actionPlan, ProbabilityLevel probabilityLevel, ImpactLevel impactLevel,
+	public AnalyzedResult(Problem problem, String actionPlan, ProbabilityLevel probabilityLevel, ImpactLevel impactLevel,
 			RiskLevel riskLevel) {
 		this.problem = problem;
 		this.actionPlan = actionPlan; 
@@ -57,11 +63,11 @@ public class AnalyzedResult implements Serializable {
 		this.id = id;
 	}
 
-	public String getProblem() {
+	public Problem getProblem() {
 		return problem;
 	}
 
-	public void setProblem(String problem) {
+	public void setProblem(Problem problem) {
 		this.problem = problem;
 	}
 

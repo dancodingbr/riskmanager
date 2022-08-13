@@ -23,6 +23,7 @@ import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskAssessmentMatrix;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
+import com.dancodingbr.riskmanager.models.Problem;
 import com.dancodingbr.riskmanager.services.AnalyzingResultsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -71,7 +72,7 @@ public class AnalyzingResultsControllerTest {
 	public void it_should_returns_http_200_response_when_post_analyzed_result() throws Exception {
 
 		// arrange
-		String problem = "BAD GRADES ON MATH";
+		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
@@ -110,7 +111,7 @@ public class AnalyzingResultsControllerTest {
 	public void it_should_returns_http_200_response_when_gets_analyzed_results_given_a_problem() throws Exception {
 
 		// arrange
-		String problem = "BAD GRADES ON MATH";
+		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
@@ -127,13 +128,13 @@ public class AnalyzingResultsControllerTest {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		given(analyzingResultsService.getAnalyzedResults(anyString())
+		given(analyzingResultsService.getAnalyzedResults(anyLong())
 			).willReturn(analyzedResultsList);
 		
 		// act and assert
 		this.mockMvc.perform(
 				MockMvcRequestBuilders.get("/analyzed-results/")
-					.param("problem", problem)
+					.param("problemId", String.valueOf(problem.getId()))
 				)
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -141,7 +142,7 @@ public class AnalyzingResultsControllerTest {
 				.andReturn();
 
 		// verify
-		verify(analyzingResultsService).getAnalyzedResults(anyString());
+		verify(analyzingResultsService).getAnalyzedResults(anyLong());
 	}
 	
 }

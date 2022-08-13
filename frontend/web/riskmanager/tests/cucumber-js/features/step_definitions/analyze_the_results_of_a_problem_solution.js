@@ -65,3 +65,22 @@ When("the user saves this analyzed result", function () {
 Then("shows that operation was {string}", function (operationStatus) {
   return this.response.expectStatus(200).expectBodyContains(operationStatus);
 });
+
+When("the system gets the analyzed results associated", function () {
+  this.response = spec()
+    .get(SERVER_URL + "/analyzed-results/")
+    .withQueryParams("problem", encodeURIComponent(this.problem));
+});
+
+Then("shows {string}", function (actionPlan) {
+  //  return this.response.expectStatus(200).expectBodyContains(actionPlan);
+  this.actionPlan = actionPlan;
+});
+
+Then("{string} of each analyzed result", function (riskLevel) {
+  //  return this.response.expectStatus(200).expectBodyContains(riskLevel);
+  return this.response
+    .expectStatus(200)
+    .expectBodyContains(this.actionPlan)
+    .expectBodyContains(riskLevel);
+});

@@ -29,7 +29,7 @@ describe('AnalyzedResultService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should returns http 200 response when call http GET method given a probability and impact level', () => {
+  it('should returns http 200 response when GET a valid risk level given a probability and impact level', () => {
     // arrange
     const params = new HttpParams()
       .append('probabilityLevel', 'RARE')
@@ -59,7 +59,7 @@ describe('AnalyzedResultService', () => {
     httpTestingController.verify();
   });
 
-  it('should returns http 200 response when call http POST method given a analyzed result', () => {
+  it('should returns http 200 response when POST analyzed result given a analyzed result', () => {
     // arrange
     const problem = 'BAD GRADES ON MATH';
     const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
@@ -98,4 +98,49 @@ describe('AnalyzedResultService', () => {
     request.flush(expectedOperationStatus);
     httpTestingController.verify();
   });
+
+  it('should returns http 200 response when GET all analyzed results given a problem', () => {
+    // arrange
+    const params = new HttpParams()
+      .append('problemId', 1);
+
+    const problem = 'BAD GRADES ON MATH';
+    const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
+    const probabilityLevel = 'RARE';
+    const impactLevel = 'HIGH';
+    const riskLevel = 'LOW';
+  
+    const analyzedResult = new AnalyzedResult(
+        problem,
+        actionPlan,
+        probabilityLevel,
+        impactLevel,
+        riskLevel
+      );
+  
+    const expectedAnalyzedResults: AnalyzedResult[] = [
+      analyzedResult
+    ];
+
+    // act
+    service.getAllByProblem(
+        params.get('problemId') as unknown as number,
+      )
+      .subscribe((actualAnalyzedResults) => {
+        // assert: content
+        expect(actualAnalyzedResults).toEqual(expectedAnalyzedResults);
+      });
+
+    // asserts: http request call
+    const url = `http://localhost:8080/riskmanager/api/analyzed-results/`;
+    const request = httpTestingController.expectOne(
+      (request) => request.url === url
+    );
+    expect(request.request.method).toEqual('GET');
+    expect(request.request.params).toEqual(params);
+    expect(request.request.responseType).toEqual('json');
+    request.flush(expectedAnalyzedResults);
+    httpTestingController.verify();
+  });
+
 });

@@ -1,4 +1,5 @@
 export class AnalyzedResult {
+    id!: number;
     problem: string;
     actionPlan: string;
     probabilityLevel: string;

@@ -58,8 +58,8 @@ public class AnalyzingResultsController {
 	}
 	
 	@GetMapping("/analyzed-results/")
-	public ResponseEntity<List<AnalyzedResult>> getAnalyzedResults(@RequestParam("problem") String problem) {
-		List<AnalyzedResult> analyzedResultsList = this.analyzingResultsService.getAnalyzedResults(problem); //List.of();
+	public ResponseEntity<List<AnalyzedResult>> getAnalyzedResults(@RequestParam("problemId") Long problemId) {
+		List<AnalyzedResult> analyzedResultsList = this.analyzingResultsService.getAnalyzedResults(problemId);
 		
 		final HttpHeaders httpHeaders= new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);

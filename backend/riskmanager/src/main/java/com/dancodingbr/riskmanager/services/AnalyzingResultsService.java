@@ -49,8 +49,8 @@ public class AnalyzingResultsService {
 		this.analyzedResultRepository.save(analyzedResult);
 	}
 
-	public List<AnalyzedResult> getAnalyzedResults(String anyString) {
-		return this.analyzedResultRepository.findAllByProblem(anyString);
+	public List<AnalyzedResult> getAnalyzedResults(Long problemId) {
+		return this.analyzedResultRepository.findAllByProblem(problemId);
 	}
 
 }
