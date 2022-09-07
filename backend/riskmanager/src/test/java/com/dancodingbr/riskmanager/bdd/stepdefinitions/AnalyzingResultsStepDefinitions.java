@@ -2,7 +2,7 @@ package com.dancodingbr.riskmanager.bdd.stepdefinitions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +53,10 @@ public class AnalyzingResultsStepDefinitions {
 	public void a_related(String problemId, String problemDescription) {
 		this.problem.setId(Long.parseLong(problemId));
 		this.problem.setDescription(problemDescription);
+
+		this.responseEntityString = this.webClient.post().uri("/problems/")
+				.contentType(MediaType.APPLICATION_JSON).bodyValue(this.problem).retrieve().toEntity(String.class)
+				.block();
 	}
 
 	@Given("an {string} done")

@@ -2,6 +2,8 @@ package com.dancodingbr.riskmanager.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,11 +56,13 @@ public class AnalyzingResultsRepositoryTest {
 	@Test
 	public void it_should_returns_analyzed_results_given_a_problem() throws InvalidRiskLevelException {
 		// arrange
-		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
+		Problem problem = new Problem(null, "BAD GRADES ON MATH");
 		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
+
+		entityManager.persistAndFlush(problem);
 
 		AnalyzedResult analyzedResult = new AnalyzedResult(
 				problem,

@@ -3,7 +3,6 @@ package com.dancodingbr.riskmanager.models;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,9 +17,11 @@ import javax.persistence.Table;
 import com.dancodingbr.riskmanager.enums.ImpactLevel;
 import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "analyzed_result")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AnalyzedResult implements Serializable {
 
 	private static final long serialVersionUID = 2798554009379643370L;

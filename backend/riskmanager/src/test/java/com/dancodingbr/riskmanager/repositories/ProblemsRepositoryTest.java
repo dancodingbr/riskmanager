@@ -2,6 +2,7 @@ package com.dancodingbr.riskmanager.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 import java.util.Arrays;
 import java.util.List;
 

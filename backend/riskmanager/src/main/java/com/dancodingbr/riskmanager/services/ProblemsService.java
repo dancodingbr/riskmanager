@@ -20,4 +20,8 @@ public class ProblemsService {
 		return this.problemsRepository.findAll();
 	}
 
+	public void save(Problem problem) {
+		this.problemsRepository.save(problem);
+	}
+
 }
