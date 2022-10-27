@@ -3,8 +3,11 @@ const { spec } = require("pactum");
 
 const SERVER_URL = "http://localhost:8080/riskmanager/api";
 
-Given("a related {string}", function (problem) {
-  this.problem = problem;
+Given("a related {string},{string}", function (problemId, problemDescription) {
+  this.problem = {
+    id: problemId,
+    description: problemDescription
+  };
 });
 
 Given("an {string} done", function (actionPlan) {
@@ -27,8 +30,6 @@ When(
   function () {
     this.response = spec()
       .get(SERVER_URL + "/analyzing-results/")
-      .withQueryParams("problem", encodeURIComponent(this.problem))
-      .withQueryParams("actionPlan", encodeURIComponent(this.actionPlan))
       .withQueryParams(
         "probabilityLevel",
         encodeURIComponent(this.probabilityLevel)
@@ -49,6 +50,7 @@ Given("a {string} risk calculated", function (riskLevel) {
 });
 
 When("the user saves this analyzed result", function () {
+
   const analyzedResult = {
     problem: this.problem,
     actionPlan: this.actionPlan,
@@ -69,16 +71,14 @@ Then("shows that operation was {string}", function (operationStatus) {
 When("the system gets the analyzed results associated", function () {
   this.response = spec()
     .get(SERVER_URL + "/analyzed-results/")
-    .withQueryParams("problem", encodeURIComponent(this.problem));
+    .withQueryParams("problemId", encodeURIComponent(this.problem.id));
 });
 
 Then("shows {string}", function (actionPlan) {
-  //  return this.response.expectStatus(200).expectBodyContains(actionPlan);
   this.actionPlan = actionPlan;
 });
 
 Then("{string} of each analyzed result", function (riskLevel) {
-  //  return this.response.expectStatus(200).expectBodyContains(riskLevel);
   return this.response
     .expectStatus(200)
     .expectBodyContains(this.actionPlan)

@@ -8,6 +8,7 @@ import { RiskLevelJson } from '../interfaces/risk-level-json';
 import { AnalyzedResult } from '../classes/analyzed-result';
 import { OperationStatusJson } from '../interfaces/operation-status-json';
 import { HttpParams } from '@angular/common/http';
+import { Problem } from '../classes/problem';
 
 describe('AnalyzedResultService', () => {
   let httpTestingController: HttpTestingController;
@@ -61,7 +62,7 @@ describe('AnalyzedResultService', () => {
 
   it('should returns http 200 response when POST analyzed result given a analyzed result', () => {
     // arrange
-    const problem = 'BAD GRADES ON MATH';
+    const problem = new Problem(1, 'BAD GRADES ON MATH');
     const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
     const probabilityLevel = 'RARE';
     const impactLevel = 'HIGH';
@@ -104,7 +105,7 @@ describe('AnalyzedResultService', () => {
     const params = new HttpParams()
       .append('problemId', 1);
 
-    const problem = 'BAD GRADES ON MATH';
+    const problem = new Problem(1, 'BAD GRADES ON MATH');
     const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
     const probabilityLevel = 'RARE';
     const impactLevel = 'HIGH';

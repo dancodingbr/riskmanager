@@ -1,4 +1,4 @@
-<mat-card class="shipping-card">
+<mat-card class="analyzed-results">
   <mat-card-header>
     <mat-card-title>Analyzing Results</mat-card-title>
   </mat-card-header>
@@ -22,6 +22,8 @@
         <div class="mat-elevation-z8">
           <table
             mat-table
+            id="analyzed-results-table"
+            [dataSource]="this.dataSource"
             class="full-width-table"
             matSort
             aria-label="Elements"
@@ -54,7 +56,7 @@
 
           <mat-paginator
             #paginator
-            [length]="dataSource?.data?.length"
+            [length]="dataSource.data.length"
             [pageIndex]="0"
             [pageSize]="10"
             [pageSizeOptions]="[5, 10]"

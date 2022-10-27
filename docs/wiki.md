@@ -249,6 +249,10 @@ ng e2e
 ng test
 ```
 
+- Update all packages to the latest version
+
+https://nodejs.dev/en/learn/update-all-the-nodejs-dependencies-to-their-latest-version/#update-all-packages-to-the-latest-version
+
 
 #### Backend
 

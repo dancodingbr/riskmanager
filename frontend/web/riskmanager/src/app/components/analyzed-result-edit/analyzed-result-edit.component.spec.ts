@@ -9,6 +9,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 import { AnalyzedResult } from 'src/app/classes/analyzed-result';
+import { Problem } from 'src/app/classes/problem';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
 
 import { AnalyzedResultEditComponent } from './analyzed-result-edit.component';
@@ -63,8 +64,9 @@ describe('AnalyzedResultEditComponent', () => {
 
   it('should sets risk level when on changing probability level', () => {
     // arrange
+    const problem = new Problem(1, 'BAD GRADES ON MATH');
     component.analyzedResultEditForm.controls['problem'].setValue(
-      'BAD GRADES ON MATH'
+      problem
     );
     component.analyzedResultEditForm.controls['actionPlan'].setValue(
       'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
@@ -80,7 +82,7 @@ describe('AnalyzedResultEditComponent', () => {
     analyzedResultService
       .getRiskLevel(
         probabilityLevel,
-        component.analyzedResultEditForm.controls['impactLevel'].value
+        component.analyzedResultEditForm.controls['impactLevel'].value!
       )
       .subscribe((riskLevel) => {
         expect(
@@ -91,8 +93,9 @@ describe('AnalyzedResultEditComponent', () => {
 
   it('should set risk level when on changing impact level', () => {
     // arrange
+    const problem = new Problem(1, 'BAD GRADES ON MATH');
     component.analyzedResultEditForm.controls['problem'].setValue(
-      'BAD GRADES ON MATH'
+      problem
     );
     component.analyzedResultEditForm.controls['actionPlan'].setValue(
       'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
@@ -109,7 +112,7 @@ describe('AnalyzedResultEditComponent', () => {
     // assert
     analyzedResultService
       .getRiskLevel(
-        component.analyzedResultEditForm.controls['probabilityLevel'].value,
+        component.analyzedResultEditForm.controls['probabilityLevel'].value!,
         impactLevel
       )
       .subscribe((riskLevel) => {
@@ -121,7 +124,7 @@ describe('AnalyzedResultEditComponent', () => {
 
   it('should save the analyzed result when on clicking save button', () => {
     // arrange
-    const problem = 'BAD GRADES ON MATH';
+    const problem = new Problem(1, 'BAD GRADES ON MATH');
     const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
     const probabilityLevel = 'RARE';
     const impactLevel = 'HIGH';

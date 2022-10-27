@@ -1,13 +1,15 @@
+import { Problem } from "./problem";
+
 export class AnalyzedResult {
     id!: number;
-    problem: string;
+    problem: Problem;
     actionPlan: string;
     probabilityLevel: string;
     impactLevel: string;
     riskLevel: string;
 
     constructor(
-        problem: string,
+        problem: Problem,
         actionPlan: string,
         probabilityLevel: string,
         impactLevel: string,

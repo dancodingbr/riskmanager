@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Problem } from 'src/app/classes/problem';
 
 @Component({
   selector: 'app-analyzed-result-edit',
@@ -11,7 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AnalyzedResultEditComponent implements OnInit {
   analyzedResultEditForm = this.fb.group({
-    problem: 'BAD GRADES ON MATH',
+    problem: this.fb.group({
+      id: 1,
+      description: 'BAD GRADES ON MATH'
+    }),
     actionPlan: 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER',
     probabilityLevel: '',
     impactLevel: '',
@@ -34,7 +38,7 @@ export class AnalyzedResultEditComponent implements OnInit {
     this.analyzedResultService
       .getRiskLevel(
         probabilityLevel,
-        this.analyzedResultEditForm.controls['impactLevel'].value
+        this.analyzedResultEditForm.controls['impactLevel'].value!
       )
       .subscribe((riskLevel) => {
         this.analyzedResultEditForm.controls['riskLevel'].setValue(riskLevel);
@@ -44,7 +48,7 @@ export class AnalyzedResultEditComponent implements OnInit {
   onChangeImpactLevel(impactLevel: string) {
     this.analyzedResultService
       .getRiskLevel(
-        this.analyzedResultEditForm.controls['probabilityLevel'].value,
+        this.analyzedResultEditForm.controls['probabilityLevel'].value!,
         impactLevel
       )
       .subscribe((riskLevel) => {
@@ -53,12 +57,17 @@ export class AnalyzedResultEditComponent implements OnInit {
   }
   
   onClickSaveButton() {
+    const problem = new Problem(
+      this.analyzedResultEditForm.controls['problem'].value.id!,
+      this.analyzedResultEditForm.controls['problem'].value.description!,
+    );
+
     const analyzedResult = new AnalyzedResult(
-      this.analyzedResultEditForm.controls['problem'].value,
-      this.analyzedResultEditForm.controls['actionPlan'].value,
-      this.analyzedResultEditForm.controls['probabilityLevel'].value,
-      this.analyzedResultEditForm.controls['impactLevel'].value,
-      this.analyzedResultEditForm.controls['riskLevel'].value
+      problem,
+      this.analyzedResultEditForm.controls['actionPlan'].value!,
+      this.analyzedResultEditForm.controls['probabilityLevel'].value!,
+      this.analyzedResultEditForm.controls['impactLevel'].value!,
+      this.analyzedResultEditForm.controls['riskLevel'].value!
     );
 
     this.analyzedResultService.save(analyzedResult).subscribe((operationStatus) => {

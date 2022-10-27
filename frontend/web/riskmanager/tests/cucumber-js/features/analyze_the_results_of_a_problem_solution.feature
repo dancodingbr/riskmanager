@@ -12,9 +12,9 @@ Feature: Analyze the results of a problem solution
         Then this result in the <risk_level> chance to occurs the problem again
 
         Examples:
-            | problem                | action_plan                                  | probability_level       | impact_level    | risk_level    |
-            | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         |
-            | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         |
+            | problem                    | action_plan                                  | probability_level       | impact_level    | risk_level    |
+            | '1','BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         |
+            | '2','BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         |
 
     Scenario: Save an analyzed result
         Given a related <problem>
@@ -26,9 +26,9 @@ Feature: Analyze the results of a problem solution
         Then shows that operation was <operation_status>
 
         Examples:
-            | problem                | action_plan                                  | probability_level       | impact_level    | risk_level    | operation_status    |
-            | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         | 'SUCCESS'           |
-            | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         | 'SUCCESS'           |
+            | problem                    | action_plan                                  | probability_level       | impact_level    | risk_level    | operation_status    |
+            | '1','BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'RARE'                  | 'HIGH'          | 'LOW'         | 'SUCCESS'           |
+            | '2','BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'INFREQUENT'            | 'MODERATE'      | 'LOW'         | 'SUCCESS'           |
 
     Scenario: List the analyzed results
         Given a related <problem>
@@ -37,6 +37,6 @@ Feature: Analyze the results of a problem solution
         And <risk_level> of each analyzed result
 
         Examples:
-            | problem                | action_plan                                  | risk_level    |
-            | 'BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'LOW'         |
-            | 'BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'LOW'         |
+            | problem                    | action_plan                                  | risk_level    |
+            | '1','BAD GRADES ON MATH'   | 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'    | 'LOW'         |
+            | '2','BODY WEIGHT RAISING'  | 'DECREASE 20% OF CALORIES CONSUMED PER DAY'  | 'LOW'         |

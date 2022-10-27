@@ -21,8 +21,8 @@ module.exports = {
             .click('//span[contains(text(), "BAD GRADES ON MATH")]');
 
         // arrange
-        browser.expect.element('table tbody').text.to.contain('STUDY 8 HOURS PER WEEK ON NEXT SEMESTER');
-        browser.expect.element('table tbody').text.to.contain('LOW');
+        browser.useXpath().expect.element("//table[@id='analyzed-results-table']").text.to.contain('STUDY 8 HOURS PER WEEK ON NEXT SEMESTER');
+        browser.useXpath().expect.element("//table[@id='analyzed-results-table']").text.to.contain('LOW');
     },
 
 };
