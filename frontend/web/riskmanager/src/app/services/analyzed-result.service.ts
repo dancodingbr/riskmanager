@@ -27,7 +27,7 @@ export class AnalyzedResultService {
   }
 
   save(analyzedResult: AnalyzedResult): Observable<string> {
-    return this.httpClient.post<OperationStatusJson>("http://localhost:8080/riskmanager/api/analyzed-results/", analyzedResult).pipe(
+    return this.httpClient.post<OperationStatusJson>("http://localhost:8080/riskmanager/api/analyzed-result/", analyzedResult).pipe(
       map(data => data.operation_status)
     );
   }

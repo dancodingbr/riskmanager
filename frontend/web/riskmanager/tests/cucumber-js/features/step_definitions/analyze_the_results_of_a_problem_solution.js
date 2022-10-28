@@ -60,7 +60,7 @@ When("the user saves this analyzed result", function () {
   };
 
   this.response = spec()
-    .post(SERVER_URL + "/analyzed-results/")
+    .post(SERVER_URL + "/analyzed-result/")
     .withBody(analyzedResult);
 });
 

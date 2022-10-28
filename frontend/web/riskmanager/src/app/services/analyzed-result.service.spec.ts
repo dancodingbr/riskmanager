@@ -89,7 +89,7 @@ describe('AnalyzedResultService', () => {
     });
 
     // asserts: http request call
-    const url = `http://localhost:8080/riskmanager/api/analyzed-results/`;
+    const url = `http://localhost:8080/riskmanager/api/analyzed-result/`;
     const request = httpTestingController.expectOne(
       (request) => request.url === url
     );
