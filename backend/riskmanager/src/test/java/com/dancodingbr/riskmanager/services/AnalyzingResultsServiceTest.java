@@ -21,6 +21,7 @@ import com.dancodingbr.riskmanager.enums.RiskLevel;
 import com.dancodingbr.riskmanager.exception.InvalidImpactLevelException;
 import com.dancodingbr.riskmanager.exception.InvalidProbabilityLevelException;
 import com.dancodingbr.riskmanager.exception.InvalidRiskLevelException;
+import com.dancodingbr.riskmanager.models.ActionPlan;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
 import com.dancodingbr.riskmanager.models.Problem;
 import com.dancodingbr.riskmanager.repositories.AnalyzedResultRepository;
@@ -122,7 +123,7 @@ public class AnalyzingResultsServiceTest {
 		
 		// arrange
 		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
-		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ActionPlan actionPlan = new ActionPlan(null, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER");
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
@@ -152,7 +153,7 @@ public class AnalyzingResultsServiceTest {
 
 		// arrange
 		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
-		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ActionPlan actionPlan = new ActionPlan(null, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER");
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);

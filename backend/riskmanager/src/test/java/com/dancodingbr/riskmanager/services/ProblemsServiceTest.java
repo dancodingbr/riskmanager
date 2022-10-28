@@ -51,7 +51,7 @@ public class ProblemsServiceTest {
 	}
 
 	@Test
-	public void it_should_returns_nothing_when_saves_an_analyzed_result_successfully() throws Exception {
+	public void it_should_returns_nothing_when_saves_a_problem_successfully() throws Exception {
 		
 		// arrange
 		Long id = 1L;

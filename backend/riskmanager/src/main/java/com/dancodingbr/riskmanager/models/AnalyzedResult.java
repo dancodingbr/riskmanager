@@ -34,7 +34,9 @@ public class AnalyzedResult implements Serializable {
 	@JoinColumn(name = "problem_id")
 	private Problem problem;
 
-	private String actionPlan;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "action_plan_id")
+	private ActionPlan actionPlan;
 
 	@Enumerated(EnumType.STRING)
 	private ProbabilityLevel probabilityLevel;
@@ -47,7 +49,7 @@ public class AnalyzedResult implements Serializable {
 	
 	public AnalyzedResult() {}
 
-	public AnalyzedResult(Problem problem, String actionPlan, ProbabilityLevel probabilityLevel, ImpactLevel impactLevel,
+	public AnalyzedResult(Problem problem, ActionPlan actionPlan, ProbabilityLevel probabilityLevel, ImpactLevel impactLevel,
 			RiskLevel riskLevel) {
 		this.problem = problem;
 		this.actionPlan = actionPlan; 
@@ -72,11 +74,11 @@ public class AnalyzedResult implements Serializable {
 		this.problem = problem;
 	}
 
-	public String getActionPlan() {
+	public ActionPlan getActionPlan() {
 		return actionPlan;
 	}
 
-	public void setActionPlan(String actionPlan) {
+	public void setActionPlan(ActionPlan actionPlan) {
 		this.actionPlan = actionPlan;
 	}
 

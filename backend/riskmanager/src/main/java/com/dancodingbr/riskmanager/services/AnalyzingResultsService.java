@@ -3,6 +3,7 @@ package com.dancodingbr.riskmanager.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dancodingbr.riskmanager.enums.ImpactLevel;
 import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
@@ -51,6 +52,13 @@ public class AnalyzingResultsService {
 
 	public List<AnalyzedResult> getAnalyzedResults(Long problemId) {
 		return this.analyzedResultRepository.findAllByProblem(problemId);
+	}
+
+	@Transactional
+	public void save(List<AnalyzedResult> analyzedResultsList) {
+		for (AnalyzedResult analyzedResult : analyzedResultsList) {
+			this.save(analyzedResult);
+		}
 	}
 
 }

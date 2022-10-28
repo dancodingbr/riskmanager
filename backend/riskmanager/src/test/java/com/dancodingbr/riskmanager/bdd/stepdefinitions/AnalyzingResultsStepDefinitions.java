@@ -2,7 +2,7 @@ package com.dancodingbr.riskmanager.bdd.stepdefinitions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.dancodingbr.riskmanager.enums.ImpactLevel;
 import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
+import com.dancodingbr.riskmanager.models.ActionPlan;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
 import com.dancodingbr.riskmanager.models.Problem;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,13 +41,17 @@ public class AnalyzingResultsStepDefinitions {
 	private ResponseEntity<List<AnalyzedResult>> responseEntityAnalyzedResultList;
 
 	private String riskLevel;
-	private String actionPlan;
+	private ActionPlan actionPlan;
 	private Problem problem;
+	
+	private List<AnalyzedResult> analyzedResultsExpectedList;
 
 	@Before
 	public void before() {
 		this.webClient = WebClient.builder().baseUrl("http://localhost:" + this.port + this.contextPath).build();
 		this.problem = new Problem();
+		this.actionPlan = new ActionPlan();
+		this.analyzedResultsExpectedList = new ArrayList<AnalyzedResult>();
 	}
 
 	@Given("a related {string},{string}")
@@ -59,9 +64,14 @@ public class AnalyzingResultsStepDefinitions {
 				.block();
 	}
 
-	@Given("an {string} done")
-	public void an_done(String actionPlan) {
-		this.actionPlan = actionPlan;
+	@Given("an {string},{string} done")
+	public void an_done(String actionPlanId, String actionPlanDescription) {
+		this.actionPlan.setId(Long.parseLong(actionPlanId));
+		this.actionPlan.setDescription(actionPlanDescription);
+
+		this.responseEntityString = this.webClient.post().uri("/action-plans/")
+				.contentType(MediaType.APPLICATION_JSON).bodyValue(this.actionPlan).retrieve().toEntity(String.class)
+				.block();
 	}
 
 	@Given("a {string} occurrence of this mitigated problem")
@@ -105,7 +115,7 @@ public class AnalyzingResultsStepDefinitions {
 				ProbabilityLevel.valueOf(probabilityLevel), ImpactLevel.valueOf(this.impactLevel),
 				RiskLevel.valueOf(this.riskLevel));
 
-		this.responseEntityString = this.webClient.post().uri("/analyzed-results/")
+		this.responseEntityString = this.webClient.post().uri("/analyzed-result/")
 				.contentType(MediaType.APPLICATION_JSON).bodyValue(analyzedResult).retrieve().toEntity(String.class)
 				.block();
 
@@ -117,11 +127,27 @@ public class AnalyzingResultsStepDefinitions {
 		JsonNode jsonNode = mapper.readTree(this.responseEntityString.getBody());
 		assertEquals(operationStatus, jsonNode.get("operation_status").asText());
 	}
-	
-	@Given("a related problem")
-	public void a_related_problem(io.cucumber.datatable.DataTable dataTable) {
+
+	@Given("the <analyzed_results> stored")
+	public void the_analyzed_results_stored(io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-		this.problem = new Problem(Long.parseLong(rows.get(0).get("id")), rows.get(0).get("description"));
+
+		for (int i=0; i<rows.size(); i++) {
+			String[] problemStr = rows.get(i).get("problem").replace("'", "").split(",");
+			String[] actionPlanStr = rows.get(i).get("action_plan").replace("'", "").split(",");
+			Problem problem = new Problem(Long.parseLong(problemStr[0]), problemStr[1]);
+			ActionPlan actionPlan = new ActionPlan(Long.parseLong(actionPlanStr[0]), actionPlanStr[1]);
+			ProbabilityLevel probabilityLevel = ProbabilityLevel.valueOf(rows.get(i).get("probability_level").replace("'", "")); 
+			ImpactLevel impactLevel = ImpactLevel.valueOf(rows.get(i).get("impact_level").replace("'", ""));
+			RiskLevel riskLevel = RiskLevel.valueOf(rows.get(i).get("risk_level").replace("'", ""));
+			this.analyzedResultsExpectedList.add(
+					new AnalyzedResult(problem, actionPlan, probabilityLevel, impactLevel, riskLevel)
+				);
+		}
+
+		this.responseEntityString = this.webClient.post().uri("/analyzed-results/")
+				.contentType(MediaType.APPLICATION_JSON).bodyValue(analyzedResultsExpectedList).retrieve().toEntity(String.class)
+				.block();
 	}
 	
 	@When("the system gets the analyzed results associated")
@@ -135,18 +161,18 @@ public class AnalyzingResultsStepDefinitions {
 				.toEntityList(AnalyzedResult.class)
 				.block();
 	}
-	
-	@Then("shows {string}")
-	public void shows(String actionPlan) throws JsonMappingException, JsonProcessingException {
-		List<AnalyzedResult> analyzedResultsList = this.responseEntityAnalyzedResultList.getBody();
-		assertEquals(actionPlan, analyzedResultsList.get(0).getActionPlan());
-	}
 
+	@Then("shows {string},{string}")
+	public void shows(String actionPlanId, String actionPlanDescription) throws JsonMappingException, JsonProcessingException {
+		List<AnalyzedResult> analyzedResultsActualList = this.responseEntityAnalyzedResultList.getBody();
+		assertEquals(Long.parseLong(actionPlanId), analyzedResultsActualList.get(0).getActionPlan().getId());
+		assertEquals(actionPlanDescription, analyzedResultsActualList.get(0).getActionPlan().getDescription());
+	}
+	
 	@Then("{string} of each analyzed result")
 	public void of_each_analyzed_result(String riskLevel) {
 		List<AnalyzedResult> analyzedResultsList = this.responseEntityAnalyzedResultList.getBody();
 		assertEquals(riskLevel, analyzedResultsList.get(0).getRiskLevel().name());
 	}
-
 	
 }

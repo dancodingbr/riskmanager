@@ -17,6 +17,7 @@ import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskAssessmentMatrix;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
 import com.dancodingbr.riskmanager.exception.InvalidRiskLevelException;
+import com.dancodingbr.riskmanager.models.ActionPlan;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
 import com.dancodingbr.riskmanager.models.Problem;
 
@@ -33,7 +34,7 @@ public class AnalyzingResultsRepositoryTest {
 	public void it_should_returns_analyzed_result_when_saves_an_analyzed_result() throws InvalidRiskLevelException {
 		// arrange
 		Problem problem = new Problem(null, "BAD GRADES ON MATH");
-		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ActionPlan actionPlan = new ActionPlan(null, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER");
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
@@ -57,12 +58,13 @@ public class AnalyzingResultsRepositoryTest {
 	public void it_should_returns_analyzed_results_given_a_problem() throws InvalidRiskLevelException {
 		// arrange
 		Problem problem = new Problem(null, "BAD GRADES ON MATH");
-		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ActionPlan actionPlan = new ActionPlan(null, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER");
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
 
 		entityManager.persistAndFlush(problem);
+		entityManager.persistAndFlush(actionPlan);
 
 		AnalyzedResult analyzedResult = new AnalyzedResult(
 				problem,

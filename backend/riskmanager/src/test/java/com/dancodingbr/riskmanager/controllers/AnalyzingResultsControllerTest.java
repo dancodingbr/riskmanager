@@ -2,6 +2,7 @@ package com.dancodingbr.riskmanager.controllers;
 
 import static org.mockito.BDDMockito.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import com.dancodingbr.riskmanager.enums.ImpactLevel;
 import com.dancodingbr.riskmanager.enums.ProbabilityLevel;
 import com.dancodingbr.riskmanager.enums.RiskAssessmentMatrix;
 import com.dancodingbr.riskmanager.enums.RiskLevel;
+import com.dancodingbr.riskmanager.models.ActionPlan;
 import com.dancodingbr.riskmanager.models.AnalyzedResult;
 import com.dancodingbr.riskmanager.models.Problem;
 import com.dancodingbr.riskmanager.services.AnalyzingResultsService;
@@ -73,7 +75,7 @@ public class AnalyzingResultsControllerTest {
 
 		// arrange
 		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
-		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ActionPlan actionPlan = new ActionPlan(1L, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER");
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
@@ -94,7 +96,7 @@ public class AnalyzingResultsControllerTest {
 		
 		// act and assert
 		this.mockMvc.perform(
-				MockMvcRequestBuilders.post("/analyzed-results/")
+				MockMvcRequestBuilders.post("/analyzed-result/")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(new ObjectMapper().writeValueAsString(analyzedResult))
 				)
@@ -112,7 +114,7 @@ public class AnalyzingResultsControllerTest {
 
 		// arrange
 		Problem problem = new Problem(1L, "BAD GRADES ON MATH");
-		String actionPlan = "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER";
+		ActionPlan actionPlan = new ActionPlan(null, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER");
 		ProbabilityLevel probabilityLevel = ProbabilityLevel.RARE;
 		ImpactLevel impactLevel = ImpactLevel.HIGH;
 		RiskLevel riskLevel = RiskAssessmentMatrix.get(probabilityLevel, impactLevel);
@@ -143,6 +145,52 @@ public class AnalyzingResultsControllerTest {
 
 		// verify
 		verify(analyzingResultsService).getAnalyzedResults(anyLong());
+	}
+
+	@Test
+	public void it_should_returns_http_200_response_when_post_analyzed_results_list() throws Exception {
+
+		// arrange
+		List<AnalyzedResult> analyzedResultsList = new ArrayList<AnalyzedResult>();
+		analyzedResultsList.add(
+				new AnalyzedResult(
+						new Problem(1L, "BAD GRADES ON MATH"),
+						new ActionPlan(1L, "STUDY 8 HOURS PER WEEK ON NEXT SEMESTER"),
+						ProbabilityLevel.RARE,
+						ImpactLevel.HIGH,
+						RiskAssessmentMatrix.get(ProbabilityLevel.RARE, ImpactLevel.HIGH)
+					)				
+				);
+		analyzedResultsList.add(
+				new AnalyzedResult(
+						new Problem(2L, "BODY WEIGHT RAISING"),
+						new ActionPlan(2L, "DECREASE 20% OF CALORIES CONSUMED PER DAY"),
+						ProbabilityLevel.INFREQUENT,
+						ImpactLevel.MODERATE,
+						RiskAssessmentMatrix.get(ProbabilityLevel.INFREQUENT, ImpactLevel.MODERATE)
+					)				
+				);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode node = mapper.createObjectNode();
+	    node.put("operation_status", "SUCCESS");
+		
+		doNothing().when(analyzingResultsService).save(analyzedResultsList);
+
+		// act and assert
+		this.mockMvc.perform(
+				MockMvcRequestBuilders.post("/analyzed-results/")
+					.contentType(MediaType.APPLICATION_JSON)
+					.content(new ObjectMapper().writeValueAsString(analyzedResultsList))
+				)
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.content().string(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(node)))
+				.andReturn();
+
+		// verify
+		verify(analyzingResultsService, times(1)).save(analyzedResultsList);
+
 	}
 	
 }

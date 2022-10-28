@@ -43,7 +43,7 @@ public class AnalyzingResultsController {
 		return new ResponseEntity<String>(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(node), httpHeaders, HttpStatus.OK);		
 	}
 	
-	@PostMapping("/analyzed-results/")
+	@PostMapping("/analyzed-result/")
 	public ResponseEntity<String> postAnalyzedResult(@RequestBody AnalyzedResult analyzedResult) throws JsonProcessingException, InvalidImpactLevelException {
 	    this.analyzingResultsService.save(analyzedResult);
 
@@ -65,6 +65,20 @@ public class AnalyzingResultsController {
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		
 		return new ResponseEntity<List<AnalyzedResult>>(analyzedResultsList, httpHeaders, HttpStatus.OK);
+	}
+	
+	@PostMapping("/analyzed-results/")
+	public ResponseEntity<String> postAnalyzedResults(@RequestBody List<AnalyzedResult> analyzedResultsList) throws JsonProcessingException, InvalidImpactLevelException {
+	    this.analyzingResultsService.save(analyzedResultsList);
+
+		final HttpHeaders httpHeaders= new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode node = mapper.createObjectNode();
+		node.put("operation_status", "SUCCESS");
+		
+		return new ResponseEntity<String>(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(node), httpHeaders, HttpStatus.OK);
 	}
 	
 }
