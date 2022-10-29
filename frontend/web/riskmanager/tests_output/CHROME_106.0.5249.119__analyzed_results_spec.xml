@@ -5,9 +5,9 @@
 
   <testsuite name="analyzed_results_spec"
     errors="0" failures="0" hostname="" id="" package="analyzed_results_spec" skipped="0"
-    tests="1" time="0.1670" timestamp="">
+    tests="1" time="0.1600" timestamp="">
   
-    <testcase name="should gets analyzed results when user selects a given problem" classname="analyzed_results_spec" time="0.1670" assertions="2">
+    <testcase name="should gets analyzed results when user selects a given problem" classname="analyzed_results_spec" time="0.1600" assertions="2">
 
     
 

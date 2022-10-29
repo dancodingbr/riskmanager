@@ -5,9 +5,9 @@
 
   <testsuite name="analyzed_result_edit_spec"
     errors="0" failures="0" hostname="" id="" package="analyzed_result_edit_spec" skipped="0"
-    tests="3" time="0.9710" timestamp="">
+    tests="3" time="1.015" timestamp="">
   
-    <testcase name="should gets risk level when user selects probability and impact level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.2190" assertions="3">
+    <testcase name="should gets risk level when user selects probability and impact level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.2590" assertions="3">
 
     
 
@@ -16,7 +16,7 @@
     
     </testcase>
   
-    <testcase name="should gets risk level when user selects impact and probability level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.1120" assertions="3">
+    <testcase name="should gets risk level when user selects impact and probability level given a problem and an action plan" classname="analyzed_result_edit_spec" time="0.1180" assertions="3">
 
     
 
@@ -25,7 +25,7 @@
     
     </testcase>
   
-    <testcase name="should save analyzed result when user clicks on save button given a analyzed result edited" classname="analyzed_result_edit_spec" time="0.6400" assertions="3">
+    <testcase name="should save analyzed result when user clicks on save button given a analyzed result edited" classname="analyzed_result_edit_spec" time="0.6380" assertions="3">
 
     
 

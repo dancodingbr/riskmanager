@@ -4,6 +4,7 @@ import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Problem } from 'src/app/classes/problem';
+import { ActionPlan } from 'src/app/classes/action-plan';
 
 @Component({
   selector: 'app-analyzed-result-edit',
@@ -16,7 +17,10 @@ export class AnalyzedResultEditComponent implements OnInit {
       id: 1,
       description: 'BAD GRADES ON MATH'
     }),
-    actionPlan: 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER',
+    actionPlan: this.fb.group({
+      id: 1,
+      description: 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
+    }),
     probabilityLevel: '',
     impactLevel: '',
     riskLevel: '',
@@ -61,10 +65,14 @@ export class AnalyzedResultEditComponent implements OnInit {
       this.analyzedResultEditForm.controls['problem'].value.id!,
       this.analyzedResultEditForm.controls['problem'].value.description!,
     );
+    const actionPlan = new ActionPlan(
+      this.analyzedResultEditForm.controls['actionPlan'].value.id!,
+      this.analyzedResultEditForm.controls['actionPlan'].value.description!,
+    );
 
     const analyzedResult = new AnalyzedResult(
       problem,
-      this.analyzedResultEditForm.controls['actionPlan'].value!,
+      actionPlan,
       this.analyzedResultEditForm.controls['probabilityLevel'].value!,
       this.analyzedResultEditForm.controls['impactLevel'].value!,
       this.analyzedResultEditForm.controls['riskLevel'].value!

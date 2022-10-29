@@ -10,6 +10,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { Problem } from 'src/app/classes/problem';
+import { ActionPlan } from 'src/app/classes/action-plan';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
 
 import { AnalyzedResultEditComponent } from './analyzed-result-edit.component';
@@ -65,11 +66,12 @@ describe('AnalyzedResultEditComponent', () => {
   it('should sets risk level when on changing probability level', () => {
     // arrange
     const problem = new Problem(1, 'BAD GRADES ON MATH');
+    const actionPlan = new ActionPlan(1, 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER');
     component.analyzedResultEditForm.controls['problem'].setValue(
       problem
     );
     component.analyzedResultEditForm.controls['actionPlan'].setValue(
-      'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
+      actionPlan
     );
     component.analyzedResultEditForm.controls['probabilityLevel'].setValue('');
     component.analyzedResultEditForm.controls['impactLevel'].setValue('HIGH');
@@ -94,11 +96,12 @@ describe('AnalyzedResultEditComponent', () => {
   it('should set risk level when on changing impact level', () => {
     // arrange
     const problem = new Problem(1, 'BAD GRADES ON MATH');
+    const actionPlan = new ActionPlan(1, 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER');
     component.analyzedResultEditForm.controls['problem'].setValue(
       problem
     );
     component.analyzedResultEditForm.controls['actionPlan'].setValue(
-      'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
+      actionPlan
     );
     component.analyzedResultEditForm.controls['probabilityLevel'].setValue(
       'RARE'
@@ -125,7 +128,7 @@ describe('AnalyzedResultEditComponent', () => {
   it('should save the analyzed result when on clicking save button', () => {
     // arrange
     const problem = new Problem(1, 'BAD GRADES ON MATH');
-    const actionPlan = 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER';
+    const actionPlan = new ActionPlan(1, 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER');
     const probabilityLevel = 'RARE';
     const impactLevel = 'HIGH';
     const riskLevel = 'LOW';
