@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'riskmanager';
+  opened: boolean = true;
+
+  onClickShowSidenav(): void {
+    this.opened = !this.opened;
+  }
 }

@@ -1,0 +1,15 @@
+.sidenav-container {
+  height: 80%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav-content {
+  height: 95%;
+}
+
+.toolbar-footer {
+  font-size: 12px;
+}

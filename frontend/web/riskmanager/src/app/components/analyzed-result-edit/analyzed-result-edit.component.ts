@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Problem } from 'src/app/classes/problem';
 import { ActionPlan } from 'src/app/classes/action-plan';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-analyzed-result-edit',
   templateUrl: './analyzed-result-edit.component.html',
   styleUrls: ['./analyzed-result-edit.component.css'],
 })
-export class AnalyzedResultEditComponent implements OnInit {
+export class AnalyzedResultEditComponent implements OnInit, AfterViewInit {
+
   analyzedResultEditForm = this.fb.group({
+    id: 0,
     problem: this.fb.group({
-      id: 1,
-      description: 'BAD GRADES ON MATH'
+      id: 0,
+      description: ''
     }),
     actionPlan: this.fb.group({
-      id: 1,
-      description: 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
+      id: 0,
+      description: ''
     }),
     probabilityLevel: '',
     impactLevel: '',
@@ -31,10 +34,17 @@ export class AnalyzedResultEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
+    private location: Location,
     private analyzedResultService: AnalyzedResultService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (history.state?.data !== undefined) {
+      this.analyzedResultEditForm.setValue(history.state?.data)
+    }
+  }
+  
+  ngAfterViewInit() {}
 
   onSubmit(): void {}
 
@@ -84,6 +94,10 @@ export class AnalyzedResultEditComponent implements OnInit {
         duration: 3000
       });
     });
+  }
+
+  onClickBack() {
+    this.location.back();
   }
 
 }

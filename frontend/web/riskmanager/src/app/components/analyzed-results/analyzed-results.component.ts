@@ -18,7 +18,7 @@ export class AnalyzedResultsComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<AnalyzedResult>([]);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'actionPlan', 'riskLevel'];
+  displayedColumns = ['id', 'actionPlan', 'riskLevel', 'actions'];
 
   problems: Problem[] = [];
 

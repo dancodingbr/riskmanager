@@ -1,6 +1,15 @@
-<form [formGroup]="analyzedResultEditForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="analyzed-result-edit">
+<mat-card class="analyzed-result-edit">
+  <form [formGroup]="analyzedResultEditForm" novalidate (ngSubmit)="onSubmit()">
     <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="arrow back icon"
+          [ngStyle]="{ cursor: 'pointer' }"
+          (click)="onClickBack()"
+          >arrow_back</mat-icon
+        >
+      </div>
       <mat-card-title>Edit Analyzed Result</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -93,5 +102,5 @@
         Save
       </button>
     </mat-card-actions>
-  </mat-card>
-</form>
+  </form>
+</mat-card>

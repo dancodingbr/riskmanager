@@ -17,6 +17,10 @@ import { AnalyzedResultsComponent } from './components/analyzed-results/analyzed
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
   ],
   providers: [
     MatSnackBarModule,

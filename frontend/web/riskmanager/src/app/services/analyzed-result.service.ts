@@ -37,4 +37,5 @@ export class AnalyzedResultService {
       .append('problemId', problemId)
     return this.httpClient.get<AnalyzedResult[]>("http://localhost:8080/riskmanager/api/analyzed-results/", {params: params});
   }
+  
 }

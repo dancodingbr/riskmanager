@@ -12,6 +12,7 @@ import { AnalyzedResult } from 'src/app/classes/analyzed-result';
 import { Problem } from 'src/app/classes/problem';
 import { ActionPlan } from 'src/app/classes/action-plan';
 import { AnalyzedResultService } from 'src/app/services/analyzed-result.service';
+import { Location } from '@angular/common';
 
 import { AnalyzedResultEditComponent } from './analyzed-result-edit.component';
 
@@ -28,12 +29,18 @@ class MockAnalyzedResultService {
   ): Observable<string> {
     return of('SUCCESS');
   }
+
+}
+
+class MockLocation {
+  back(): void {}
 }
 
 describe('AnalyzedResultEditComponent', () => {
   let component: AnalyzedResultEditComponent;
   let fixture: ComponentFixture<AnalyzedResultEditComponent>;
   let analyzedResultService: AnalyzedResultService;
+  let locationMock: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -50,11 +57,13 @@ describe('AnalyzedResultEditComponent', () => {
       ],
       providers: [
         { provide: AnalyzedResultService, useClass: MockAnalyzedResultService },
+        { provide: Location, useClass: MockLocation },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AnalyzedResultEditComponent);
     analyzedResultService = TestBed.inject(AnalyzedResultService);
+    locationMock = TestBed.inject(Location);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -151,4 +160,42 @@ describe('AnalyzedResultEditComponent', () => {
       );
     });
   });
+
+  it('should set the analyzed result properties when call on init method', () => {
+    // arrange
+    const analyzedResultFormExpected = {
+      id: 1,
+      problem: {
+        id: 1,
+        description: 'BAD GRADES ON MATH'
+      },
+      actionPlan: {
+          id: 1,
+          description: 'STUDY 8 HOURS PER WEEK ON NEXT SEMESTER'
+      },
+      probabilityLevel: 'RARE',
+      impactLevel: 'HIGH',
+      riskLevel: 'LOW'
+    }
+
+    history.pushState({data: analyzedResultFormExpected}, '')
+
+    // act
+    component.ngOnInit();
+
+    // assert
+    expect(component.analyzedResultEditForm.getRawValue()).toEqual(analyzedResultFormExpected);
+  });
+
+  it('should go back to the parent component when call on click back method', () => {
+    // arrange
+    spyOn(locationMock, 'back')
+
+    // act
+    component.onClickBack();
+
+    // assert
+    expect(locationMock.back).toHaveBeenCalledTimes(1);
+  });
+
 });

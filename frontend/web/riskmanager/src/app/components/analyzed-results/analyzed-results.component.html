@@ -1,5 +1,8 @@
 <mat-card class="analyzed-results">
   <mat-card-header>
+    <div mat-card-avatar class="example-header-image">
+      <mat-icon aria-hidden="false" aria-label="manage search icon">manage_search</mat-icon>
+    </div>
     <mat-card-title>Analyzing Results</mat-card-title>
   </mat-card-header>
   <mat-card-content>
@@ -48,6 +51,16 @@
                 New Risk Level
               </th>
               <td mat-cell *matCellDef="let row">{{ row.riskLevel }}</td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>
+                Actions
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <a [routerLink]="['/analyzed-results', row.id]" [state]="{data: row}">Edit</a>                
+              </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
