@@ -356,10 +356,10 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 ### Definition Of Done
 
 - Tests written and passing
-- Build passing
 - Cross-browser testing done
-- Documentation updated
+- Build passing
 - Acceptance criteria met
+- Documentation updated
 
 ## <a name="meeting-notes"></a>Meeting Notes
 
