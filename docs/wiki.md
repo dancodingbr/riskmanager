@@ -264,7 +264,7 @@ https://nodejs.dev/en/learn/update-all-the-nodejs-dependencies-to-their-latest-v
 
 **Setting Steps**
 
-1. Install openjdk (version: 17).
+1. Install openjdk (version: 17 or later).
 
 2. Install Eclipse IDE.
 

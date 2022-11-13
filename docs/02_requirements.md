@@ -153,7 +153,7 @@ Project Artifacts
 
 | FILE |  TOOL | LINK |
 | ------ | ------ | ------ |
-| UX/UI | Pencil Project | [02_ux-ui-design.epgz](https://github.com/dancodingbr/riskmanager/tree/main/docs/02_ux-ui-design/02_ux-ui-design.epgz) |
+| UX/UI (Wireframes, Lo-Fi Prototype) | Figma | [02_ux-ui-design.fig](https://github.com/dancodingbr/riskmanager/tree/main/docs/02_ux-ui-design/02_ux-ui-design.fig) |
 | Architecture | Archi | [03_architecture.archimate](https://github.com/dancodingbr/riskmanager/tree/main/docs/03_architecture/03_architecture.archimate) |
 
 

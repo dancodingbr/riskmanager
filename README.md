@@ -1,12 +1,14 @@
 # Risk Manager
 
-This project consists in the development of a risk manager application based on PDCA concept. As from reported problems or vulnerabilities, the user will be able to analyze and choose which action plans are effective for solving or control them. 
+![App-Screen-Sample](https://github.com/dancodingbr/riskmanager/blob/main/docs/misc/app-screen-sample.png)
+
+This project consists in the development of a risk manager application based on [PDCA](https://www.mindtools.com/media/Diagrams/PDCA2017.jpg) concept. As from reported problems or vulnerabilities, the user will be able to analyze and choose which action plans are effective for solving or control them. 
 
 ## Description
 
 The main features that's application is going to provide are:
 
-- Mount risk assessment matrix based on crossing impact and probability levels.
+- Mount [risk assessment matrix](https://www.schgroup.com/wp-content/uploads/2019/07/risk1.png) based on crossing impact and probability levels.
 
 - The risk can be considered a cause/problem/vulnerability that will be treated.
 
@@ -60,6 +62,7 @@ The main features that's application is going to provide are:
 ## Installation
 
 _installation_
+For more information, see the project's [wiki](https://github.com/dancodingbr/riskmanager/blob/main/docs/wiki.md).
 
 ## Contributing
 

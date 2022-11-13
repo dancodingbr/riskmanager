@@ -47,6 +47,7 @@
               #probabilityLevel
               id="probability-level-element-id"
               formControlName="probabilityLevel"
+              matTooltip="Define the probability level of occurence this problem again after the action plan done."
               (selectionChange)="
                 onChangeProbabilityLevel(probabilityLevel.value)
               "
@@ -66,6 +67,7 @@
               #impactLevel
               id="impact-level-element-id"
               formControlName="impactLevel"
+              matTooltip="Define which impact level of this problem after the action plan done."
               (selectionChange)="onChangeImpactLevel(impactLevel.value)"
             >
               <mat-option value="CRITICAL">Critical</mat-option>
@@ -84,6 +86,7 @@
               matInput
               placeholder="Risk Level"
               id="risk-level-element-id"
+              matTooltip="This is the new risk level to occurence this problem again."
               formControlName="riskLevel"
               readonly
             />
