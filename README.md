@@ -2,7 +2,9 @@
 
 This project consists in the development of a risk manager application based on [PDCA](https://www.mindtools.com/media/Diagrams/PDCA2017.jpg) concept. As from reported problems or vulnerabilities, the user will be able to analyze and choose which action plans are effective for solving or control them. 
 
+<kbd>
 ![App-Screen-Sample](https://github.com/dancodingbr/riskmanager/blob/feature/analyze-results/docs/misc/app-screen-sample.png)
+</kbd>
 
 ## Description
 
