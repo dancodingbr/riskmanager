@@ -45,11 +45,11 @@ The main features that's application is going to provide are:
 >
 > **Do**: Study efectively
 >
-> **Check**: Monitoring grades achieved during the semester
+> **Check**: _What is the risk of this problem occurs again after the execution of action plans?_
 >
 > Risk: Low (Probabilitiy: Rare vs Impact: High) [After Action Plan] 
 >
-> **Adjust**: Think about the grades achieved and plan the next semester
+> **Adjust**: _Choose which action plans were effective to solve the problem._
 >
 > Solved the problem? / Are you satisfied?: Yes / No
 >
