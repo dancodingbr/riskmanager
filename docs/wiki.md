@@ -36,9 +36,13 @@ This is the list of main features that should be developed, according to [requir
 #### Features
 
 :white_check_mark: Analyze the results of a problem solution
+
 :white_large_square: Choose the effective action plans for the problem
+
 :white_large_square: Register tasks to do for each action plan
+
 :white_large_square: Create potential action plans to solve a problem
+
 :white_large_square: Register a problem
 
 
