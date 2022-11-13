@@ -35,7 +35,7 @@ This is the list of main features that should be developed, according to [requir
 
 #### Features
 
-:white_check_mark: Analyze the results of a problem solution
+:clock4: Analyze the results of a problem solution
 
 :white_large_square: Choose the effective action plans for the problem
 
