@@ -15,32 +15,36 @@ Welcome to Risk Manager's wiki.
 
 ### Roadmap
 
-_(basically, is a strategic plan that defines a software development goals or desired outcome and includes the major steps or milestones needed to reach it.)_
-
 The goals of this project should follow what it was defined in the main features proposed initially. See [README.md](https://github.com/dancodingbr/riskmanager). Certainly, changes will be applied during future releases when it's necessary.
 
 ### Iteration Plans
 
-_(what the team will do (implement) during a iteration planned, generally in 4 weeks (1 month). At the end of each iteration, we want to have a version of the application that can be used by the users.)_
-
 The iteration plans could contains a set of features or bugfixes to develop. 
 
-By now, there aren't any deadlines defined, but the milestone is marked for a version that is validated and ready to use.
+By now, there aren't any deadlines defined, but the milestone is marked for a release that is validated and ready for use (in other words, it passed for all Definition of Done's criterias).
 
 At the end of each iteration, we want to have a version of the application that can be used by the users.
 
 This is the list of main features that should be developed, according to [requirements](https://github.com/dancodingbr/riskmanager/blob/main/docs/02_requirements.md) and sorted by the most important:
 
-- Analyze the results of a problem solution
-- Choose the effective action plans for the problem
-- Register tasks to do for each action plan
-- Create potential action plans to solve a problem
-- Register a problem
+| Label  | Description  |
+|---|---|
+| :white_large_square: | not started  |
+| :clock4: | doing  |
+| :white_check_mark: | done  |
+
+#### Features
+
+:white_check_mark: Analyze the results of a problem solution
+:white_large_square: Choose the effective action plans for the problem
+:white_large_square: Register tasks to do for each action plan
+:white_large_square: Create potential action plans to solve a problem
+:white_large_square: Register a problem
 
 
 ### Endgame Plans 
 
-_(the final week of the milestone. During this week the team will wrap up any feature work, they will test using a test plan Iteration Plans, and then they will fix the critical bugs for that milestone.)_
+_(description)_
 
 
 ### Retrospectives
@@ -56,8 +60,8 @@ _(image of basic workflow. ex. git flow, trunk based, github flow)_
 
 In this project, we'll use a custom workflow based essentially on Github Flow. It's composed by the following branches:
 
-- **master**
-- **development**: it can used to validate the changes made on bugfix or feature branches before rebase with the master branch
+- **main**
+- **development**: it can used to validate the changes made on bugfix or feature branches before rebase with the main branch
 - **bugfix**
 - **feature**
 
