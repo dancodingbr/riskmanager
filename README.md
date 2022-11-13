@@ -1,6 +1,6 @@
 # Risk Manager
 
-![App-Screen-Sample](https://github.com/dancodingbr/riskmanager/blob/main/docs/misc/app-screen-sample.png)
+![App-Screen-Sample](https://github.com/dancodingbr/riskmanager/blob/feature/analyze-results/docs/misc/app-screen-sample.png)
 
 This project consists in the development of a risk manager application based on [PDCA](https://www.mindtools.com/media/Diagrams/PDCA2017.jpg) concept. As from reported problems or vulnerabilities, the user will be able to analyze and choose which action plans are effective for solving or control them. 
 
@@ -61,7 +61,6 @@ The main features that's application is going to provide are:
 
 ## Installation
 
-_installation_
 For more information, see the project's [wiki](https://github.com/dancodingbr/riskmanager/blob/main/docs/wiki.md).
 
 ## Contributing
