@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="3"
+            failures="1"
+            tests="2">
+
+  <testsuite name="analyzed_results_spec"
+    errors="3" failures="1" hostname="" id="" package="analyzed_results_spec" skipped="0"
+    tests="2" time="20.83" timestamp="">
+  
+    <testcase name="should gets analyzed results when user selects a given problem" classname="analyzed_results_spec" time="0.2020" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="should shows an analyzed result edit form when user clicks on a edit link associated" classname="analyzed_results_spec" time="20.63" assertions="1">  <failure message="Expected current url to contain: &#34;analyzed-results/1&#34; - expected &#34;contain &#39;analyzed-results/1&#39;&#34; but got: &#34;http://localhost:4200/analyzed-results&#34; (5086ms)">    at Object.should shows an analyzed result edit form when user clicks on a edit link associated (/Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:43:30)</failure>
+
+    
+    <error message="Expected current url to contain: [0;33m&#34;analyzed-results/1&#34;[0m - expected [0;32m&#34;contain &#39;analyzed-results/1&#39;&#34;[0m but got: [0;31m&#34;http://localhost:4200/analyzed-results&#34;[0m[0;90m (5086ms)[0m" type="error"><![CDATA[
+    Error
+    at Object.should shows an analyzed result edit form when user clicks on a edit link associated (/Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:43:30)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    ]]></error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+       NoSuchElementError
+   An element could not be located on the page using the given search parameters.
+    {&#34;error&#34;:{&#34;name&#34;:&#34;InvalidSelectorError&#34;,&#34;remoteStacktrace&#34;:&#34;&#34;},&#34;status&#34;:-1,&#34;value&#34;:null}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    /Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     31 |         await browser.navigateTo(browser.launch_url + &#39;/analyzed-results&#39;);
+     32 |         await browser
+     33 |             .click(&#39;#problems-element-id&#39;) 
+     34 |             .useXpath()
+     35 |             .click(&#39;//span[contains(text(), &#34;BAD GRADES ON MATH&#34;)]&#39;);
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An element could not be located on the page using the given search parameters.
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    /Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     33 |             .click(&#39;#problems-element-id&#39;)
+     34 |             .useXpath()
+     35 |             .click(&#39;//span[contains(text(), &#34;BAD GRADES ON MATH&#34;)]&#39;); 
+     36 | 
+     37 |         // act
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An element could not be located on the page using the given search parameters.
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    /Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     38 |         await browser
+     39 |             .useXpath()
+     40 |             .click(&#39;//table//tbody//tr//td//a[contains(@href, &#34;analyzed-results/1&#34;)]&#39;); 
+     41 | 
+     42 |         // assert
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

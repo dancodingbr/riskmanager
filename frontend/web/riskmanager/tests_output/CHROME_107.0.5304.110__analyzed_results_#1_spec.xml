@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="analyzed_results_#1_spec"
+    errors="0" failures="0" hostname="" id="" package="analyzed_results_#1_spec" skipped="0"
+    tests="1" time="0.1940" timestamp="">
+  
+    <testcase name="should gets analyzed results when user selects a given problem" classname="analyzed_results_#1_spec" time="0.1940" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
