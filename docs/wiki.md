@@ -35,7 +35,7 @@ This is the list of main features that should be developed, according to [requir
 
 #### Features
 
-:clock4: Analyze the results of a problem solution
+:white_check_mark: Analyze the results of a problem solution
 
 :white_large_square: Choose the effective action plans for the problem
 
@@ -58,6 +58,8 @@ _(description)_
 
 ## <a name="development-notes"></a>Development Notes
 
+This section describe some general notes and suggestions of conventions that it could be applied to the project. This could be changed and flexible according to the project needs, that means, don't worry if something was overlooked (eg. a poorly crafted comment, a bad pull request, etc). It's not intention of these recommendations to turn the project hard to be worked but to find a way to maintain at least a minimal organization. :wink:
+
 ### Workflow
 
 _(image of basic workflow. ex. git flow, trunk based, github flow)_
@@ -69,25 +71,23 @@ In this project, we'll use a custom workflow based essentially on Github Flow. I
 - **bugfix**
 - **feature**
 
-### Contributing 
-
-#### Open an Issue Template
+### Open an Issue (Template)
 
 **Issue _number_**
 >
 > _Version: vX.Y.Z_
 >
-> _System Operator_
+> _System Operator:_
 >
 > _What would you want to do?_
 >
-> _Steps to reproduce_
+> _Steps to reproduce:_
 >
-> _Expected results_
+> _Expected results:_
 >
-> _Actual results_
+> _Actual results:_
 
-#### Branch Names Style
+### Branch Names Style
 
 >_main_
 >
@@ -97,7 +97,7 @@ In this project, we'll use a custom workflow based essentially on Github Flow. I
 >
 >_bugfix/bugfix-name_
 
-#### Make Pull Requests
+### Making Pull Requests
 
 Reference: _https://gist.github.com/MarcDiethelm/7303312_
 
@@ -127,7 +127,7 @@ git merge upstream/main
 git checkout -b feature/feature-name
 ```
 
-- Implement/fix your feature, comment your code. 
+- Implement or fix your feature, and comment your code. 
 
 - Follow the code style of the project, including indentation.
 
@@ -137,13 +137,13 @@ git checkout -b feature/feature-name
 
 - Add or change the documentation as needed.
 
-- Add the changes
+- Add the changes:
 
 ```sh
 git add .
 ```
 
-- Commit the changes
+- Commit the changes:
 
 ```sh
 git commit -am "your_comment"
@@ -173,7 +173,7 @@ git push --set-upstream origin feature/feature-name
 - Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
 
 
-#### Commit Messages Style
+### Commit Messages Style
 
 Reference: _https://cbea.ms/git-commit/_
 
@@ -194,31 +194,85 @@ _(Note: This development environment was preparing in Linux operating system (Ub
 
 **Setting Steps**
 
-1. Install VS Code.
+1). Install VS Code.
 
-2. Install Node js.
+2). Install Node js.
 
-3. Install npm.
+3). Install npm.
 
-4. Install Angular CLI.
+4). Install Angular CLI.
 
-5. Import the project as a workspace and open in integrated terminal.
+5). Import the project as a workspace and open in integrated terminal.
 
-6. Run the application.
+6). Run the application.
 
 ```sh
 cd frontend/web/riskmanager
 ng serve --open
 ```
 
-7. If you receive a message like this "command not found: ng", run the following commands:
+7). If you receive a message like this "command not found: ng", run the following commands:
 
 ```sh
 npm install --save-dev @angular/cli@latest
 npm install -g @angular/cli
 ```
 
-_[...]_
+
+**Testing**
+
+- Pré-Requisites (p.s.: only when running E2E tests)
+
+1). Run the backend application in background.
+
+a. First, open the backend project in Eclipse and run the project like this: Right-click on project, choose the option Run As -> Java Application, in this case "RiskManager Application". In "Arguments" tab, put on "VM Arguments" field the following clause used to select the qa profile:
+
+```sh
+-Dspring.profiles.active=qa
+```
+
+b. Then click on "Run" button. It will create a temporary H2 database demo (using db.sql to create the schema and demo.sql to populate the database with sample data). The application process will be used to respond the incomming requests to the REST API layer.
+
+2). Run the frontend application in background, opening in a new integrated terminal on VS Code.
+
+
+- Steps
+
+For E2E tests, run the following command: 
+
+```sh
+npx nightwatch
+```
+
+For integration and unit tests, run the following command:
+
+```sh
+ng test
+```
+
+
+**Building**
+
+In VS Code, open an integrated terminal, on the root project directory (frontend/web/riskmanager/), and run the following command:
+
+```sh
+ng build --configuration production
+```
+
+At the end of the build process, if the execution ran sucessfully, the output files will be generated on dist directory (for example: dist/riskmanager/) containing html, css, javascript and asset files that will be used to deploy the frontend tier of the application.
+
+
+**Deploy**
+
+1). Install and start Docker.
+
+2). Open a terminal, go to the root directory of frontend project and run the following commands:
+
+```sh
+cd "/riskmanager/frontend/web/riskmanager"
+docker build -t dancodingbr/riskmanager-frontend .
+docker run -p 8000:80 dancodingbr/riskmanager-frontend
+```
 
 
 **Misc Commands**
@@ -257,9 +311,10 @@ ng e2e
 ng test
 ```
 
-- Update all packages to the latest version
+- Updating all dependencies used in the Angular project:
 
-https://nodejs.dev/en/learn/update-all-the-nodejs-dependencies-to-their-latest-version/#update-all-packages-to-the-latest-version
+https://www.npmjs.com/package/npm-check-updates
+
 
 
 #### Backend
@@ -272,36 +327,71 @@ https://nodejs.dev/en/learn/update-all-the-nodejs-dependencies-to-their-latest-v
 
 **Setting Steps**
 
-1. Install openjdk (version: 17 or later).
+1). Install openjdk (version: 17 or later).
 
-2. Install Eclipse IDE.
+2). Install Eclipse IDE.
 
-3. Open Eclipse
+3). Open Eclipse
 
-- Select as workspace /riskmanager/backend.
+a. Select as workspace /riskmanager/backend.
 
-- Import the riskmanager project (/backend/riskmanager) as a Existing Gradle project.
+b. Import the riskmanager project (/backend/riskmanager) as a Existing Maven project.
 
-4. Install Spring Tools 4 plugin
+4). Install Spring Tools 4 plugin
 
-- Click on Help > Eclipse Marketplace. In Find field, type "spring".
+a. Click on Help > Eclipse Marketplace. In Find field, type "spring".
 
-- Choose and install "Spring Tools 4".
+b. Choose and install "Spring Tools 4".
 
-- Follow the steps (Next, Next, ... Finish) and wait until the installation ends.
+c. Follow the steps (Next, Next, ... Finish) and wait until the installation ends.
 
-5. Run the application.
+5). Run the application.
+
+**Testing**
+
+1). First, with the project opened in Eclipse, run the application like this: Right-click on project, choose the option Run As -> Java Application, in this case RiskManager Application. By default, a dev profile (application-dev.properties) is selected in pom.xml, when you need to test only the backend tier. 
+
+It will create a temporary H2 database demo (using db.sql to create the schema). The application process will be used to respond the incomming requests to the REST API layer.
+
+2). Keep the application running in background, and now run the tests (right-click on project, choose the option Run As -> JUnit Test). All tests will be runned at once, like integration and unit tests.
 
 
-_[...]_
+**Building**
 
-### Release Notes
+1). First, with the project opened in Eclipse, run the application like this: Right-click on project, choose the option Run As -> Java Application, in this case RiskManager Application.
 
-#### Creating a Release
+This will be necessary to do because the build process will run all tests, including those ones related to the REST API layer.
+
+2). Keep the application running in background, and now run the tests (right-click on project, choose the option Run As -> Run Configurations). In "Maven Build" option, right-click and choose to create a new configuration. Fill the form fields like this:
+
+```sh
+Name: build
+Goals: clean package
+```
+
+Click on "Apply" and then on "Run" button.
+
+At the end of the build process, if the execution ran sucessfully, a JAR file will be generated on target directory (for example: riskmanager-0.0.1-SNAPSHOT.jar). This jar file will be used to deploy the backend tier of the application.
+
+
+**Deploy**
+
+1). Install and start Docker.
+
+2). Open a terminal, go to the root directory of backend project and run the following commands:
+
+```sh
+cd "/riskmanager/backend/riskmanager"
+docker build -t dancodingbr/riskmanager-backend .
+docker run -p 8080:8080 dancodingbr/riskmanager-backend
+```
+
+
+### Creating a Release
 
 Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository_
 
-#### Version Format (Release Tags)
+### Version Format (Release Tags)
 
 > **vX.Y.Z**
 > 
@@ -311,7 +401,7 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 >
 > Z: Several bug fix identified in production environment
 
-#### Notes Template
+### Notes Template
 
 > **New Features**
 > 

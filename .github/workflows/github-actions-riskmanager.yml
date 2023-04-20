@@ -1,0 +1,45 @@
+name: riskmanager-ci
+
+on:
+  push:
+    branches: [ "feature/analyze-results" ]
+  pull_request:
+    branches: [ "feature/analyze-results" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package
+
+      - name: Packaging Workflow Data as Artifacts
+        run: mkdir staging && cp target/*.jar staging
+        uses: actions/upload-artifact@v3
+
+        with:
+          name: Package
+          path: staging
+
+
+
+#      - name: Run a one-line script
+#        run: echo Hello, world!
+
+#      - name: Run a multi-line script
+#        run: |
+#          echo Add other actions to build,
+#          echo test, and deploy your project.

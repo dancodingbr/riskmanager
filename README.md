@@ -61,6 +61,33 @@ The main features that's application is going to provide are:
 
 ## Installation
 
+At the moment, it's available a demo version of the application.
+
+#### Running the Application on Docker Compose
+
+- Clone the repository.
+
+```sh
+git clone https://github.com/dancodingbr/riskmanager.git
+```
+
+- Install Docker and Docker Compose. 
+
+- Start Docker. 
+
+- Open a terminal, go to the root project diretory and run the following command:
+
+```sh
+cd "/riskmanager"
+docker-compose up
+```
+
+- Open a browser and type:
+
+```sh
+http://localhost/
+```
+
 For more information, see the project's [wiki](https://github.com/dancodingbr/riskmanager/blob/main/docs/wiki.md).
 
 ## Contributing

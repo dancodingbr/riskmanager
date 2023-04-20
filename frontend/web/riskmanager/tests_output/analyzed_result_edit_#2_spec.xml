@@ -3,8 +3,8 @@
             failures="0"
             tests="0">
 
-  <testsuite name="analyzed_result_edit_#1_spec"
-    errors="1" failures="0" hostname="" id="" package="analyzed_result_edit_#1_spec" skipped="2"
+  <testsuite name="analyzed_result_edit_#2_spec"
+    errors="1" failures="0" hostname="" id="" package="analyzed_result_edit_#2_spec" skipped="1"
     tests="0" time="0.000" timestamp="">
   
 
@@ -91,12 +91,7 @@ Current browser version is 112.0.5615.121 with binary path /Applications/Google 
   
     
     <testcase
-      name="should gets risk level when user selects probability and impact level given a problem and an action plan" classname="analyzed_result_edit_#1_spec">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="should gets risk level when user selects impact and probability level given a problem and an action plan" classname="analyzed_result_edit_#1_spec">
+      name="should save analyzed result when user clicks on save button given a analyzed result edited" classname="analyzed_result_edit_#2_spec">
       <skipped />
     </testcase>
     
