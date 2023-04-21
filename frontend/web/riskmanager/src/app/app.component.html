@@ -1,0 +1,42 @@
+<mat-toolbar class="toolbar-header">
+  <button
+    mat-icon-button
+    aria-label="icon-button with menu icon"
+    (click)="onClickShowSidenav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Risk Manager</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" [(opened)]="opened">
+    <mat-selection-list [multiple]="false">
+      <mat-list-option>
+        <mat-icon mat-list-icon>home</mat-icon>
+        <div mat-line>Home</div>
+      </mat-list-option>
+      <mat-list-option>
+        <mat-icon mat-list-icon>read_more</mat-icon>
+        <div mat-line>Problem Registers</div>
+      </mat-list-option>
+      <mat-list-option>
+        <mat-icon mat-list-icon>edit_note</mat-icon>
+        <div mat-line>Action Plans</div>
+      </mat-list-option>
+      <mat-list-option [routerLink]="['/analyzed-results']">
+        <mat-icon mat-list-icon>manage_search</mat-icon>
+        <div mat-line>Analyzing Results</div>
+      </mat-list-option>
+      <mat-list-option>
+        <mat-icon mat-list-icon>checklist_rtl</mat-icon>
+        <div mat-line>Adjusting Results</div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-toolbar class="toolbar-footer"></mat-toolbar>

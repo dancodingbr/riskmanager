@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="hello_spec"
+    errors="0" failures="0" hostname="" id="" package="hello_spec" skipped="0"
+    tests="1" time="0.1050" timestamp="">
+  
+    <testcase name="should shows hello world message at home page when user clicks on hello link" classname="hello_spec" time="0.1050" assertions="1">
+
+    
+    </testcase>
+  
+
+  
+    <system-err>
+       → NoSuchElementError
+
+    An element could not be located on the page using the given search parameters.
+
+    Try fixing by :
+1. Please inspect the html before the step
+2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+/Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ 19 |             .click(&#39;#problems-element-id&#39;)
+ 20 |             .useXpath()
+ 21 |             .click(&#39;//span[contains(text(), &#34;BAD GRADES ON MATH&#34;)]&#39;); 
+ 22 | 
+ 23 |         // arrange
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+ → InvalidSelectorError
+
+    invalid selector: Unable to locate an element with the xpath expression table tbody because of the following error:
+SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+  (Session info: chrome=105.0.5195.102)
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

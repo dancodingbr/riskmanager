@@ -2,36 +2,53 @@
 
 Welcome to Risk Manager's wiki.
 
-## Project Management
+# Table of Contents
+
+* [Project Management](#project-management)
+* [Development Notes](#development-notes)
+* [Testing](#testing)
+* [Quality](#quality)
+* [Meeting Notes](#meeting-notes)
+* [Documentation](#documentation)
+
+## <a name="project-management"></a>Project Management
 
 ### Roadmap
-
-_(basically, is a strategic plan that defines a software development goals or desired outcome and includes the major steps or milestones needed to reach it.)_
 
 The goals of this project should follow what it was defined in the main features proposed initially. See [README.md](https://github.com/dancodingbr/riskmanager). Certainly, changes will be applied during future releases when it's necessary.
 
 ### Iteration Plans
 
-_(what the team will do (implement) during a iteration planned, generally in 4 weeks (1 month). At the end of each iteration, we want to have a version of the application that can be used by the users.)_
-
 The iteration plans could contains a set of features or bugfixes to develop. 
 
-By now, there aren't any deadlines defined, but the milestone is marked for a version that is validated and ready to use.
+By now, there aren't any deadlines defined, but the milestone is marked for a release that is validated and ready for use (in other words, it passed for all Definition of Done's criterias).
 
 At the end of each iteration, we want to have a version of the application that can be used by the users.
 
 This is the list of main features that should be developed, according to [requirements](https://github.com/dancodingbr/riskmanager/blob/main/docs/02_requirements.md) and sorted by the most important:
 
-- Analyze the results of a problem solution
-- Choose the effective action plans for the problem
-- Register tasks to do for each action plan
-- Create potential action plans to solve a problem
-- Register a problem
+| Label  | Description  |
+|---|---|
+| :white_large_square: | not started  |
+| :clock4: | doing  |
+| :white_check_mark: | done  |
+
+#### Features
+
+:white_check_mark: Analyze the results of a problem solution
+
+:white_large_square: Choose the effective action plans for the problem
+
+:white_large_square: Register tasks to do for each action plan
+
+:white_large_square: Create potential action plans to solve a problem
+
+:white_large_square: Register a problem
 
 
 ### Endgame Plans 
 
-_(the final week of the milestone. During this week the team will wrap up any feature work, they will test using a test plan Iteration Plans, and then they will fix the critical bugs for that milestone.)_
+_(description)_
 
 
 ### Retrospectives
@@ -39,7 +56,9 @@ _(the final week of the milestone. During this week the team will wrap up any fe
 _(description)_
 
 
-## Development Notes
+## <a name="development-notes"></a>Development Notes
+
+This section describe some general notes and suggestions of conventions that it could be applied to the project. This could be changed and flexible according to the project needs, that means, don't worry if something was overlooked (eg. a poorly crafted comment, a bad pull request, etc). It's not intention of these recommendations to turn the project hard to be worked but to find a way to maintain at least a minimal organization. :wink:
 
 ### Workflow
 
@@ -47,30 +66,28 @@ _(image of basic workflow. ex. git flow, trunk based, github flow)_
 
 In this project, we'll use a custom workflow based essentially on Github Flow. It's composed by the following branches:
 
-- **master**
-- **development**: it can used to validate the changes made on bugfix or feature branches before rebase with the master branch
+- **main**
+- **development**: it can used to validate the changes made on bugfix or feature branches before rebase with the main branch
 - **bugfix**
 - **feature**
 
-### Contributing 
-
-#### Open an Issue Template
+### Open an Issue (Template)
 
 **Issue _number_**
 >
 > _Version: vX.Y.Z_
 >
-> _System Operator_
+> _System Operator:_
 >
 > _What would you want to do?_
 >
-> _Steps to reproduce_
+> _Steps to reproduce:_
 >
-> _Expected results_
+> _Expected results:_
 >
-> _Actual results_
+> _Actual results:_
 
-#### Branch Names Style
+### Branch Names Style
 
 >_main_
 >
@@ -80,7 +97,7 @@ In this project, we'll use a custom workflow based essentially on Github Flow. I
 >
 >_bugfix/bugfix-name_
 
-#### Make Pull Requests
+### Making Pull Requests
 
 Reference: _https://gist.github.com/MarcDiethelm/7303312_
 
@@ -110,7 +127,7 @@ git merge upstream/main
 git checkout -b feature/feature-name
 ```
 
-- Implement/fix your feature, comment your code. 
+- Implement or fix your feature, and comment your code. 
 
 - Follow the code style of the project, including indentation.
 
@@ -120,13 +137,13 @@ git checkout -b feature/feature-name
 
 - Add or change the documentation as needed.
 
-- Add the changes
+- Add the changes:
 
 ```sh
 git add .
 ```
 
-- Commit the changes
+- Commit the changes:
 
 ```sh
 git commit -am "your_comment"
@@ -156,7 +173,7 @@ git push --set-upstream origin feature/feature-name
 - Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
 
 
-#### Commit Messages Style
+### Commit Messages Style
 
 Reference: _https://cbea.ms/git-commit/_
 
@@ -177,7 +194,127 @@ _(Note: This development environment was preparing in Linux operating system (Ub
 
 **Setting Steps**
 
-_[...]_
+1). Install VS Code.
+
+2). Install Node js.
+
+3). Install npm.
+
+4). Install Angular CLI.
+
+5). Import the project as a workspace and open in integrated terminal.
+
+6). Run the application.
+
+```sh
+cd frontend/web/riskmanager
+ng serve --open
+```
+
+7). If you receive a message like this "command not found: ng", run the following commands:
+
+```sh
+npm install --save-dev @angular/cli@latest
+npm install -g @angular/cli
+```
+
+
+**Testing**
+
+- Pré-Requisites (p.s.: only when running E2E tests)
+
+1). Run the backend application in background.
+
+a. First, open the backend project in Eclipse and run the project like this: Right-click on project, choose the option Run As -> Java Application, in this case "RiskManager Application". In "Arguments" tab, put on "VM Arguments" field the following clause used to select the qa profile:
+
+```sh
+-Dspring.profiles.active=qa
+```
+
+b. Then click on "Run" button. It will create a temporary H2 database demo (using db.sql to create the schema and demo.sql to populate the database with sample data). The application process will be used to respond the incomming requests to the REST API layer.
+
+2). Run the frontend application in background, opening in a new integrated terminal on VS Code.
+
+
+- Steps
+
+For E2E tests, run the following command: 
+
+```sh
+npx nightwatch
+```
+
+For integration and unit tests, run the following command:
+
+```sh
+ng test
+```
+
+
+**Building**
+
+In VS Code, open an integrated terminal, on the root project directory (frontend/web/riskmanager/), and run the following command:
+
+```sh
+ng build --configuration production
+```
+
+At the end of the build process, if the execution ran sucessfully, the output files will be generated on dist directory (for example: dist/riskmanager/) containing html, css, javascript and asset files that will be used to deploy the frontend tier of the application.
+
+
+**Deploy**
+
+1). Install and start Docker.
+
+2). Open a terminal, go to the root directory of frontend project and run the following commands:
+
+```sh
+cd "/riskmanager/frontend/web/riskmanager"
+docker build -t dancodingbr/riskmanager-frontend .
+docker run -p 8000:80 dancodingbr/riskmanager-frontend
+```
+
+
+**Misc Commands**
+
+- Angular CLI Generate: 
+
+https://angular.io/cli/generate
+
+_Note: Use Angular CLI generate commands to create the artifacts (for example: components, services, classes, interfaces, etc.)_
+
+- Run E2E tests: 
+
+. Nigtwatch CucumberJS Environment
+
+```sh
+npx nightwatch --env cucumber-js --format @cucumber/pretty-formatter
+```
+
+. Default Nightwatch Environment
+
+```sh
+npx nightwatch
+```
+
+. Default Angular E2E Environment
+
+```sh
+ng e2e
+```
+
+- Run Integration and Unit tests:
+
+. Default Karma/Jasmine Environment
+
+```sh
+ng test
+```
+
+- Updating all dependencies used in the Angular project:
+
+https://www.npmjs.com/package/npm-check-updates
+
 
 
 #### Backend
@@ -190,15 +327,71 @@ _[...]_
 
 **Setting Steps**
 
-_[...]_
+1). Install openjdk (version: 17 or later).
 
-### Release Notes
+2). Install Eclipse IDE.
 
-#### Creating a Release
+3). Open Eclipse
+
+a. Select as workspace /riskmanager/backend.
+
+b. Import the riskmanager project (/backend/riskmanager) as a Existing Maven project.
+
+4). Install Spring Tools 4 plugin
+
+a. Click on Help > Eclipse Marketplace. In Find field, type "spring".
+
+b. Choose and install "Spring Tools 4".
+
+c. Follow the steps (Next, Next, ... Finish) and wait until the installation ends.
+
+5). Run the application.
+
+**Testing**
+
+1). First, with the project opened in Eclipse, run the application like this: Right-click on project, choose the option Run As -> Java Application, in this case RiskManager Application. By default, a dev profile (application-dev.properties) is selected in pom.xml, when you need to test only the backend tier. 
+
+It will create a temporary H2 database demo (using db.sql to create the schema). The application process will be used to respond the incomming requests to the REST API layer.
+
+2). Keep the application running in background, and now run the tests (right-click on project, choose the option Run As -> JUnit Test). All tests will be runned at once, like integration and unit tests.
+
+
+**Building**
+
+1). First, with the project opened in Eclipse, run the application like this: Right-click on project, choose the option Run As -> Java Application, in this case RiskManager Application.
+
+This will be necessary to do because the build process will run all tests, including those ones related to the REST API layer.
+
+2). Keep the application running in background, and now run the tests (right-click on project, choose the option Run As -> Run Configurations). In "Maven Build" option, right-click and choose to create a new configuration. Fill the form fields like this:
+
+```sh
+Name: build
+Goals: clean package
+```
+
+Click on "Apply" and then on "Run" button.
+
+At the end of the build process, if the execution ran sucessfully, a JAR file will be generated on target directory (for example: riskmanager-0.0.1-SNAPSHOT.jar). This jar file will be used to deploy the backend tier of the application.
+
+
+**Deploy**
+
+1). Install and start Docker.
+
+2). Open a terminal, go to the root directory of backend project and run the following commands:
+
+```sh
+cd "/riskmanager/backend/riskmanager"
+docker build -t dancodingbr/riskmanager-backend .
+docker run -p 8080:8080 dancodingbr/riskmanager-backend
+```
+
+
+### Creating a Release
 
 Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository_
 
-#### Version Format (Release Tags)
+### Version Format (Release Tags)
 
 > **vX.Y.Z**
 > 
@@ -208,7 +401,7 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 >
 > Z: Several bug fix identified in production environment
 
-#### Notes Template
+### Notes Template
 
 > **New Features**
 > 
@@ -239,7 +432,7 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 >
 
 
-## Testing
+## <a name="testing"></a>Testing
 
 ### Levels
 
@@ -248,23 +441,23 @@ Reference: _https://docs.github.com/en/repositories/releasing-projects-on-github
 - System tests
 - Acceptance tests
 
-## Quality
+## <a name="quality"></a>Quality
 
 ### Definition Of Done
 
 - Tests written and passing
-- Build passing
 - Cross-browser testing done
-- Documentation updated
+- Build passing
 - Acceptance criteria met
+- Documentation updated
 
-## Meeting Notes
+## <a name="meeting-notes"></a>Meeting Notes
 
 ### Team Communication
 
 _(chat: Gitter, Discord, Slack, Teams, etc)_
 
-## Documentation
+## <a name="documentation"></a>Documentation
 
 _(documents repository, technical tutorials)_
 

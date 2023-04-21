@@ -1,0 +1,109 @@
+<mat-card class="analyzed-result-edit">
+  <form [formGroup]="analyzedResultEditForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="arrow back icon"
+          [ngStyle]="{ cursor: 'pointer' }"
+          (click)="onClickBack()"
+          >arrow_back</mat-icon
+        >
+      </div>
+      <mat-card-title>Edit Analyzed Result</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" formGroupName="problem">
+            <input
+              matInput
+              placeholder="Problem"
+              id="problem-element-id"
+              formControlName="description"
+              readonly
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" formGroupName="actionPlan">
+            <input
+              matInput
+              placeholder="Action Plan"
+              id="action-plan-element-id"
+              formControlName="description"
+              readonly
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Probability Level</mat-label>
+            <mat-select
+              #probabilityLevel
+              id="probability-level-element-id"
+              formControlName="probabilityLevel"
+              matTooltip="Define the probability level of occurence this problem again after the action plan done."
+              (selectionChange)="
+                onChangeProbabilityLevel(probabilityLevel.value)
+              "
+            >
+              <mat-option value="IMMINENT">Imminent</mat-option>
+              <mat-option value="FREQUENT">Frequent</mat-option>
+              <mat-option value="OCCASIONAL">Occasional</mat-option>
+              <mat-option value="INFREQUENT">Infrequent</mat-option>
+              <mat-option value="RARE">Rare</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Impact Level</mat-label>
+            <mat-select
+              #impactLevel
+              id="impact-level-element-id"
+              formControlName="impactLevel"
+              matTooltip="Define which impact level of this problem after the action plan done."
+              (selectionChange)="onChangeImpactLevel(impactLevel.value)"
+            >
+              <mat-option value="CRITICAL">Critical</mat-option>
+              <mat-option value="HIGH">High</mat-option>
+              <mat-option value="MODERATE">Moderate</mat-option>
+              <mat-option value="LOW">Low</mat-option>
+              <mat-option value="VERY_LOW">Very Low</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Risk Level"
+              id="risk-level-element-id"
+              matTooltip="This is the new risk level to occurence this problem again."
+              formControlName="riskLevel"
+              readonly
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        id="save-button-id"
+        color="primary"
+        type="submit"
+        (click)="onClickSaveButton()"
+      >
+        Save
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

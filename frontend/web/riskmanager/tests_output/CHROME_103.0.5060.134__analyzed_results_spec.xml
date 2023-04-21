@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="1"
+            tests="1">
+
+  <testsuite name="analyzed_results_spec"
+    errors="1" failures="1" hostname="" id="" package="analyzed_results_spec" skipped="0"
+    tests="1" time="5.266" timestamp="">
+  
+    <testcase name="should gets analyzed results when user selects a given problem" classname="analyzed_results_spec" time="5.266" assertions="1">  <failure message="Expected element &lt;table tbody&gt; text to contain: &#34;STUDY 8 HOURS PER WEEK ON NEXT SEMESTER&#34; - element was not found - expected &#34;contain &#39;STUDY 8 HOURS PER WEEK ON NEXT SEMESTER&#39;&#34; but got: &#34;[InvalidSelectorError]&#34; (5140ms)">    at Object.should gets analyzed results when user selects a given problem (/Users/daniel/riskmanager/frontend/web/riskmanager/tests/default/analyzed_results_spec.js:24:24)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)</failure>
+
+    
+    <error message="invalid selector: Unable to locate an element with the xpath expression table tbody because of the following error:
+SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+  (Session info: chrome=103.0.5060.134)" type="error"><![CDATA[
+    InvalidSelectorError: invalid selector: Unable to locate an element with the xpath expression table tbody because of the following error:
+SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+  (Session info: chrome=103.0.5060.134)
+    at Object.throwDecodedError (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/selenium-webdriver/lib/error.js:539:15)
+    at parseHttpResponse (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/selenium-webdriver/lib/http.js:647:13)
+    at Executor.execute (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/selenium-webdriver/lib/http.js:573:28)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Driver.execute (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/selenium-webdriver/lib/webdriver.js:735:17)
+    at async Driver.findElements (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/selenium-webdriver/lib/webdriver.js:1058:17)
+    at async MethodMappings.locateMultipleElements (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/nightwatch/lib/transport/selenium-webdriver/method-mappings.js:314:31)
+    at async Object.locateMultipleElements (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/nightwatch/lib/transport/selenium-webdriver/actions.js:67:18)
+    at async LocateElement.findElement (/Users/daniel/riskmanager/frontend/web/riskmanager/node_modules/nightwatch/lib/element/locator.js:143:20)
+    ]]></error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+       InvalidSelectorError: invalid selector: Unable to locate an element with the xpath expression table tbody because of the following error:
+ SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+   (Session info: chrome=103.0.5060.134)
+   SyntaxError: Failed to execute &#39;evaluate&#39; on &#39;Document&#39;: The string &#39;table tbody&#39; is not a valid XPath expression.
+     (Session info: chrome=103.0.5060.134)
+       at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

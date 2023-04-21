@@ -1,12 +1,14 @@
 # Risk Manager
 
-This project consists in the development of a risk manager application based on PDCA concept. As from reported problems or vulnerabilities, the user will be able to analyze and choose which action plans are effective for solving or control them. 
+This project consists in the development of a risk manager application based on [PDCA](https://www.mindtools.com/media/Diagrams/PDCA2017.jpg) concept. As from reported problems or vulnerabilities, the user will be able to analyze and choose which action plans are effective for solving or control them. 
+
+![App-Screen-Sample](https://github.com/dancodingbr/riskmanager/blob/feature/analyze-results/docs/misc/app-screen-sample.png)
 
 ## Description
 
 The main features that's application is going to provide are:
 
-- Mount risk assessment matrix based on crossing impact and probability levels.
+- Mount [risk assessment matrix](https://www.schgroup.com/wp-content/uploads/2019/07/risk1.png) based on crossing impact and probability levels.
 
 - The risk can be considered a cause/problem/vulnerability that will be treated.
 
@@ -43,11 +45,11 @@ The main features that's application is going to provide are:
 >
 > **Do**: Study efectively
 >
-> **Check**: Monitoring grades achieved during the semester
+> **Check**: _What is the risk of this problem occurs again after the execution of action plans?_
 >
 > Risk: Low (Probabilitiy: Rare vs Impact: High) [After Action Plan] 
 >
-> **Adjust**: Think about the grades achieved and plan the next semester
+> **Adjust**: _Choose which action plans were effective to solve the problem._
 >
 > Solved the problem? / Are you satisfied?: Yes / No
 >
@@ -59,7 +61,34 @@ The main features that's application is going to provide are:
 
 ## Installation
 
-_installation_
+At the moment, it's available a demo version of the application.
+
+#### Running the Application on Docker Compose
+
+- Clone the repository.
+
+```sh
+git clone https://github.com/dancodingbr/riskmanager.git
+```
+
+- Install Docker and Docker Compose. 
+
+- Start Docker. 
+
+- Open a terminal, go to the root project diretory and run the following command:
+
+```sh
+cd "/riskmanager"
+docker-compose up
+```
+
+- Open a browser and type:
+
+```sh
+http://localhost/
+```
+
+For more information, see the project's [wiki](https://github.com/dancodingbr/riskmanager/blob/main/docs/wiki.md).
 
 ## Contributing
 
