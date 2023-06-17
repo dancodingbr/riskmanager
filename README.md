@@ -92,7 +92,7 @@ For more information, see the project's [wiki](https://github.com/dancodingbr/ri
 
 ## Contributing
 
-You can contribute in several ways to this project, such as: reporting issues like bugs, feature requests; review source code, documentation; make pull requests, fixing bugs, etc.
+You can contribute in several ways to this project, such as: reporting issues like bugs, feature requests; review source code, documentation; make pull requests, fixing bugs, etc. More information [here](https://github.com/dancodingbr/riskmanager/tree/main/CONTRIBUTING.md).
 
 ## Documentation
 
